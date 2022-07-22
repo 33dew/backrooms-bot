@@ -1,5 +1,5 @@
 {
-  "name": "sample-expressjs",
+  "name": "backrooms",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "github.com/digitalocean-appsail/sample-express"
+    "url": "github.com/kubek420/backrooms"
   },
   "author": "",
   "license": "MIT",

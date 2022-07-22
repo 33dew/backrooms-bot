@@ -1,8 +1,8 @@
 spec:
-  name: sample-expressjs
+  name: backrooms
   services:
   - environment_slug: node-js
     git:
       branch: main
-      repo_clone_url: https://github.com/digitalocean/sample-expressjs.git
-    name: sample-expressjs
+      repo_clone_url: https://github.com/kubek420/backrooms.git
+    name: backrooms
