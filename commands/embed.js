@@ -1,24 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder, ButtonStyle, ActionRowBuilder, ButtonBuilder, PermissionFlagsBits } = require('discord.js')
-
-const embeds = {
-    createRoom: new EmbedBuilder()
-        .setColor(0x2D7D46)
-        .setTitle('Create room')
-        .setDescription('Click button below to create a private rooms section on our server!')
-        .setFooter({ text: '• Backrooms'})
-        .setTimestamp()
-}
-
-const components = {
-    createRoom: new ActionRowBuilder()
-                .addComponents(
-                    new ButtonBuilder()
-                        .setCustomId('create_room')
-                        .setLabel('Create!')
-                        .setStyle(ButtonStyle.Success),
-                )
-}
-
+const { createRoomEmbed } = require('../utils/embeds')
+const { createRoomComponent } = require('../utils/components')
 
 module.exports = {
     data:  new SlashCommandBuilder()
@@ -36,8 +18,8 @@ module.exports = {
         switch(interaction.options.getString("category")){
             case 'create_room': {
                 interaction.channel.send({
-                    embeds: [embeds.createRoom],
-                    components: [components.createRoom]
+                    embeds: [createRoomEmbed],
+                    components: [createRoomComponent]
                 })
                 break;
             }
