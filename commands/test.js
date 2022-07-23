@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js')
 const { registerRoom } = require('../db/roomActions')
-const { Room } = require('../db/models/room')
+const Room = require('../db/models/room')
 module.exports = {
     data:  new SlashCommandBuilder()
         .setName("test")
