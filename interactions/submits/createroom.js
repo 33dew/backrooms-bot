@@ -1,5 +1,7 @@
 const { ChannelType, PermissionFlagsBits } = require('discord.js')
 const { isUserHasRoom, saveRoom } = require('../../db/roomHandler')
+const { configureRoomComponent } = require('../../utils/components')
+const { configureRoomEmbed } = require('../../utils/embeds')
 
 module.exports = {
     async execute(interaction) {
@@ -65,6 +67,10 @@ module.exports = {
             ]
         })
         saveRoom(interaction.fields.getTextInputValue('create-room-input'), interaction.user.id, [c1.id, c2.id, c3.id]);
+        c2.send({
+            embeds: [configureRoomEmbed],
+            components: [configureRoomComponent]
+        })
         interaction.reply({
             content: `Rooms created <#${c2.id}>`,
             ephemeral: true
