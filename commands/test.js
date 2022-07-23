@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js')
+const { SlashCommandBuilder, ChannelType, PermissionFlagsBits } = require('discord.js')
 const { registerRoom } = require('../db/roomActions')
 const Room = require('../db/models/room')
 module.exports = {
@@ -13,13 +13,13 @@ module.exports = {
         ),
     async execute(interaction) {
         console.log(interaction)
-        const category = await interaction.guild.channels.create(interaction.user.username, {
-            type: 'category',
-            position: 1,
+        const category = await interaction.guild.channels.create({
+            name: interaction.user.id,
+            type: ChannelType.GuildCategory,
             permissionOverwrites: [
                 {
-                    id: interaction.member,
-                    allow: ['VIEW_CHANNEL'],
+                    id: interaction.user.id,
+                    allow: [PermissionFlagsBits.ViewChannel],
                 }]
         })
         // registerRoom(new Room({
