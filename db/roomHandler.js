@@ -33,15 +33,18 @@ module.exports = {
 
         updateRoom(room_name, r);
     },
-    isUserHasRoom: (userID) => {
-        Room.findOne({owner: `${userID}`}, (err, room) => {
-            if (err) {
-                console.log(err);
-            }
-            if (room) {
-                return true;
-            }
-            return false;
-        });
+    isUserHasRoom: async (userID) => {
+        // Room.findOne({owner: `${userID}`}, (err, room) => {
+        //     if (err) {
+        //         console.log(err);
+        //     }
+        //     if (room) {
+        //         return true;
+        //     }
+        //     return false;
+        // });
+        const test = await Room.findOne({owner: `${userID}`});
+        if(test) return true;
+        return false;
     }
 }
