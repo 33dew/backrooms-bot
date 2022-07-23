@@ -1,5 +1,5 @@
 require('dotenv').config();
-require('db/dbconn');
+require('./db/dbconn');
 const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages] });
 client.commands = new Collection()
