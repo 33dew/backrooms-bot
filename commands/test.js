@@ -12,10 +12,19 @@ module.exports = {
                 .setMinLength(3)
         ),
     async execute(interaction) {
-        console.log(interaction)
         const category = await interaction.guild.channels.create({
             name: interaction.user.id,
             type: ChannelType.GuildCategory,
+            permissionOverwrites: [
+                {
+                    id: interaction.user.id,
+                    allow: [PermissionFlagsBits.ViewChannel],
+                }]
+        })
+        interaction.guild.channels.create({
+            name: "Ogólny",
+            type: ChannelType.GuildText,
+            parent: category,
             permissionOverwrites: [
                 {
                     id: interaction.user.id,
