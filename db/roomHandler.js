@@ -1,5 +1,5 @@
 const {registerRoom, getRoom, updateRoom} = require('./controllers/roomController');
-const Room = require('room');
+const Room = require('./models/room');
 
 module.exports = {
     saveRoom: (name, ownerID, chatsIDs) => {
