@@ -1,4 +1,5 @@
-const { Schema } = require('mongoose').Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const RoomSchema = new Schema({
     name: { // is the chat's parent (like Ogólne, Głosowe, etc.) (Backroom + name)
