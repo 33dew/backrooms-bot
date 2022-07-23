@@ -14,3 +14,4 @@ client.on('interactionCreate', async interaction => {
 });
 
 client.login('MTAwMDE4ODI4Mjg0MTM1MDE0NA.Gzxnfy.TP_61e1CZHVWolRrQyBYPWYTpY-OomWq-mD4Es');
+require('./commands.js');
