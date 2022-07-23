@@ -1,5 +1,6 @@
 const { ChannelType, PermissionFlagsBits } = require('discord.js')
-const { isUserHasRoom, saveRoom } = require('../../db/roomHandler')
+const { isUserHasRoom, saveRoom } = require('../../db/roomHandler.js')
+/db/roomHandler.js
 module.exports = {
     async execute(interaction) {
         if(isUserHasRoom(interaction.user.id)) return interaction.reply({

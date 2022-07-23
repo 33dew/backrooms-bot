@@ -1,0 +1,47 @@
+const {registerRoom, getRoom, updateRoom} = require('./controllers/roomController');
+const Room = require('room');
+
+module.exports = {
+    saveRoom: (name, ownerID, chatsIDs) => {
+        registerRoom(new Room(
+            {
+                name: name,  
+                owner: ownerID, 
+                chats: chatsIDs
+            }
+        ));
+    },
+    getRoom: async (room_name) => {
+        const r = await getRoom(room_name);
+        const o = {
+            name: r.name,
+            owner: r.owner,
+            users: r.users,
+            chats: r.chats,
+            settings: r.settings
+        };
+        return o;
+    },
+    updateRoom: (room_name, room_data) => {
+        const r = new Room({
+            name: room_data.name,
+            owner: room_data.owner,
+            users: room_data.users,
+            chats: room_data.chats,
+            settings: room_data.settings
+        });
+
+        updateRoom(room_name, r);
+    },
+    isUserHasRoom: (userID) => {
+        Room.findOne({owner: userID}, (err, room) => {
+            if (err) {
+                console.log(err);
+            }
+            if (room) {
+                return true;
+            }
+            return false;
+        });
+    }
+}
