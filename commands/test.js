@@ -12,7 +12,8 @@ module.exports = {
                 .setMinLength(3)
         ),
     async execute(interaction) {
-        const category = await interaction.guild.channels.create({
+        const guild = interaction.guild
+        const category = await guild.channels.create({
             name: interaction.user.id,
             type: ChannelType.GuildCategory,
             permissionOverwrites: [
@@ -21,8 +22,8 @@ module.exports = {
                     allow: [PermissionFlagsBits.ViewChannel],
                 }]
         })
-        const role = msg.guild.roles.cache.find(r => r.name === "@everyone");
-        interaction.guild.channels.create({
+        const role = guild.roles.cache.find(r => r.name === "@everyone");
+        guild.channels.create({
             name: "Konfiguracja",
             type: ChannelType.GuildText,
             parent: category,
@@ -37,7 +38,7 @@ module.exports = {
                 },
             ]
         })
-        interaction.guild.channels.create({
+        guild.channels.create({
             name: "Ogólny",
             type: ChannelType.GuildText,
             parent: category,
@@ -52,7 +53,7 @@ module.exports = {
                 },
             ]
         })
-        interaction.guild.channels.create({
+        guild.channels.create({
             name: "Voice",
             type: ChannelType.GuildVoice,
             parent: category,
