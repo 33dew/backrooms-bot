@@ -1,3 +1,5 @@
+const { ActionRowBuilder, ButtonBuilder } = require("discord.js");
+
 module.exports = {
     createRoomComponent: new ActionRowBuilder()
                 .addComponents(

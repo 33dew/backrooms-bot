@@ -1,3 +1,5 @@
+const { EmbedBuilder } = require("discord.js");
+
 module.exports = {
     createRoomEmbed: new EmbedBuilder()
         .setColor(0x2D7D46)
