@@ -32,7 +32,7 @@ module.exports = {
                 { name: 'Create room', value: 'create_room' }
             )),
     async execute(interaction) {
-        switch(interaction.options.getStringOption("category")){
+        switch(interaction.options.getString("category")){
             case 'create_room': {
                 interaction.channel.send({
                     embeds: [embeds.createRoom],
