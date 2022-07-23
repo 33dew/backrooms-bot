@@ -7,7 +7,7 @@ module.exports = {
     async execute(interaction) {
         interaction.reply({
             content: "Pong!",
-            emphemeral: true
+            ephemeral: true
         });
     }
 }
