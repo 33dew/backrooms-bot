@@ -38,7 +38,6 @@ module.exports = {
             if (err) {
                 console.log(err);
             }
-            console.log(room);
             if (room) {
                 return true;
             }
