@@ -4,7 +4,7 @@ module.exports = {
     createRoomComponent: new ActionRowBuilder()
                 .addComponents(
                     new ButtonBuilder()
-                        .setCustomId('create_room')
+                        .setCustomId('createroom')
                         .setLabel('Create!')
                         .setStyle(ButtonStyle.Success),
                 )

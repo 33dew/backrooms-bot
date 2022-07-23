@@ -3,11 +3,17 @@ const { REST } = require('@discordjs/rest');
 const fs = require('fs');
 const index = require("./index.js");
 
-commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith(".js"))
+commandFiles = fs.readdirSync('./interactions/commands').filter(file => file.endsWith(".js"))
 const commands = [];
 
 for (const file of commandFiles){
-  const command = require(`./commands/${file}`)
+  const command = require(`./interactions/commands/${file}`)
+  commands.push(command.data.toJSON())
+  index.CommandCollection.set(command.data.name, command)
+}
+
+for (const file of commandFiles){
+  const command = require(`./interactions/commands/${file}`)
   commands.push(command.data.toJSON())
   index.CommandCollection.set(command.data.name, command)
 }
