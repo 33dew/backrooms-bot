@@ -33,7 +33,7 @@ module.exports = {
 
         updateRoom(room_name, r);
     },
-    isUserHasRoom: async (userID) => {
+    isUserHasRoom: (userID) => {
         Room.findOne({owner: `${userID}`}, (err, room) => {
             if (err) {
                 console.log(err);
@@ -41,7 +41,7 @@ module.exports = {
             if (room) {
                 return true;
             }
+            return false;
         });
-        return false;
     }
 }
