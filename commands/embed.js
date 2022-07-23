@@ -5,7 +5,7 @@ const embeds = {
         .setColor(0xFFFFFF)
         .setTitle('Create room')
         .setDescription('Click button below to create a private rooms section on our server!')
-        .setFooter({ name: '• Backrooms'})
+        .setFooter({ text: '• Backrooms'})
         .setTimestamp()
 }
 
