@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js')
-
+const { registerRoom } = require('../db/roomActions')
+const { Room } = require('../db/models/room')
 module.exports = {
     data:  new SlashCommandBuilder()
         .setName("test")
@@ -11,6 +12,19 @@ module.exports = {
                 .setMinLength(3)
         ),
     async execute(interaction) {
+        registerRoom(new Room({
+            name: interaction.options.getString("teststring"),
+            owner: interaction.user.id,
+            users: [],
+            chats: ['123', '321', '132'],
+            settings: {
+                    isConfigured: false,
+                    isArchived: false,
+                    usersCount: 1,
+                    chatsCount: 3,
+                    options: []
+            }
+        }))
         interaction.reply({
             content: `Test ${interaction.options.getString("teststring")}`,
             ephemeral: true
