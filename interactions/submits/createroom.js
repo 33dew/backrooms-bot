@@ -4,7 +4,8 @@ const { isUserHasRoom, saveRoom } = require('../../db/roomHandler')
 module.exports = {
     async execute(interaction) {
         if(isUserHasRoom(interaction.user.id)) return interaction.reply({
-            content: 'You have already room'
+            content: 'You have already room',
+            ephemeral: true
         })
         const guild = interaction.guild
         const category = await guild.channels.create({
