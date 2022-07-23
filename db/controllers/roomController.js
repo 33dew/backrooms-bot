@@ -11,9 +11,9 @@ module.exports = {
             });
         });
     },
-    getRoom (roomName) {
+    getRoom (ownerID) {
         return new Promise((resolve, reject) => {
-            Room.findOne({ name: roomName }, (err, room) => {
+            Room.findOne({ owner: ownerID }, (err, room) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -22,9 +22,9 @@ module.exports = {
             });
         });
     },
-    updateRoom (roomName, room) {
+    updateRoom (ownerID, room) {
         return new Promise((resolve, reject) => {
-            Room.findOneAndUpdate({ name: roomName }, room, (err, room) => {
+            Room.findOneAndUpdate({ owner: ownerID }, room, (err, room) => {
                 if (err) {
                     reject(err);
                 } else {

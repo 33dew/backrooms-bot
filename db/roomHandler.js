@@ -11,8 +11,8 @@ module.exports = {
             }
         ));
     },
-    getRoom: async (room_name) => {
-        const r = await getRoom(room_name);
+    getRoom: async (ownerID) => {
+        const r = await getRoom(ownerID);
         const o = {
             name: r.name,
             owner: r.owner,
@@ -22,7 +22,7 @@ module.exports = {
         };
         return o;
     },
-    updateRoom: (room_name, room_data) => {
+    updateRoom: (ownerID, room_data) => {
         const r = new Room({
             name: room_data.name,
             owner: room_data.owner,
@@ -31,7 +31,7 @@ module.exports = {
             settings: room_data.settings
         });
 
-        updateRoom(room_name, r);
+        updateRoom(ownerID, r);
     },
     isUserHasRoom: async (userID) => {
         try {
