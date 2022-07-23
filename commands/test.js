@@ -12,12 +12,22 @@ module.exports = {
                 .setMinLength(3)
         ),
     async execute(interaction) {
-        registerRoom(new Room({
-            name: interaction.options.getString("teststring"),
-            owner: interaction.user.id,
-            users: [],
-            chats: ['123', '321', '132']
-        }))
+        console.log(interaction)
+        const category = await interaction.guild.channels.create(interaction.user.username, {
+            type: 'category',
+            position: 1,
+            permissionOverwrites: [
+                {
+                    id: interaction.member,
+                    allow: ['VIEW_CHANNEL'],
+                }]
+        })
+        // registerRoom(new Room({
+        //     name: interaction.options.getString("teststring"),
+        //     owner: interaction.user.id,
+        //     users: [],
+        //     chats: ['123', '321', '132']
+        // }))
         interaction.reply({
             content: `Test ${interaction.options.getString("teststring")}`,
             ephemeral: true
