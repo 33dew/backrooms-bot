@@ -11,13 +11,6 @@ for (const file of commandFiles){
   commands.push(command.data.toJSON())
   index.CommandCollection.set(command.data.name, command)
 }
-
-for (const file of commandFiles){
-  const command = require(`./interactions/commands/${file}`)
-  commands.push(command.data.toJSON())
-  index.CommandCollection.set(command.data.name, command)
-}
-
 const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
 
 rest.put(Routes.applicationGuildCommands(process.env.S_ONE, process.env.S_TWO), { body: commands })

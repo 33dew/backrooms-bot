@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, ChannelType, PermissionFlagsBits } = require('discord.js')
-const { registerRoom } = require('../db/roomActions')
-const Room = require('../db/models/room')
+const { registerRoom } = require('../../db/roomActions')
+const Room = require('../../db/models/room')
 module.exports = {
     data:  new SlashCommandBuilder()
         .setName("test")
