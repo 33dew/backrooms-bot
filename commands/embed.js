@@ -32,6 +32,10 @@ module.exports = {
                 { name: 'Create room', value: 'create_room' }
             )),
     async execute(interaction) {
+        if(!interaction.member.hasPermission("ADMINISTRATOR")) return interaction.reply({
+            content: "You dont have enough permissions!",
+            ephemeral: true
+        });
         switch(interaction.options.getString("category")){
             case 'create_room': {
                 interaction.channel.send({
