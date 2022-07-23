@@ -21,15 +21,51 @@ module.exports = {
                     allow: [PermissionFlagsBits.ViewChannel],
                 }]
         })
+        const role = msg.guild.roles.cache.find(r => r.name === "@everyone");
+        interaction.guild.channels.create({
+            name: "Konfiguracja",
+            type: ChannelType.GuildText,
+            parent: category,
+            permissionOverwrites: [
+                {
+                    id: role.id,
+                    deny: [PermissionFlagsBits.ViewChannel],
+                },
+                {
+                    id: interaction.user.id,
+                    allow: [PermissionFlagsBits.ViewChannel],
+                },
+            ]
+        })
         interaction.guild.channels.create({
             name: "Ogólny",
             type: ChannelType.GuildText,
             parent: category,
             permissionOverwrites: [
                 {
+                    id: role.id,
+                    deny: [PermissionFlagsBits.ViewChannel],
+                },
+                {
                     id: interaction.user.id,
                     allow: [PermissionFlagsBits.ViewChannel],
-                }]
+                },
+            ]
+        })
+        interaction.guild.channels.create({
+            name: "Voice",
+            type: ChannelType.GuildVoice,
+            parent: category,
+            permissionOverwrites: [
+                {
+                    id: role.id,
+                    deny: [PermissionFlagsBits.ViewChannel],
+                },
+                {
+                    id: interaction.user.id,
+                    allow: [PermissionFlagsBits.ViewChannel],
+                },
+            ]
         })
         // registerRoom(new Room({
         //     name: interaction.options.getString("teststring"),
