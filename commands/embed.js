@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, ButtonStyle, ActionRowBuilder, ButtonBuilder } = require('discord.js')
+const { SlashCommandBuilder, EmbedBuilder, ButtonStyle, ActionRowBuilder, ButtonBuilder, PermissionFlagsBits } = require('discord.js')
 
 const embeds = {
     createRoom: new EmbedBuilder()
@@ -24,6 +24,7 @@ module.exports = {
     data:  new SlashCommandBuilder()
         .setName("embed")
         .setDescription("Sending an embed")
+        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
         .addStringOption(option => 
             option.setName("category")
             .setDescription('The embed category')
@@ -32,10 +33,6 @@ module.exports = {
                 { name: 'Create room', value: 'create_room' }
             )),
     async execute(interaction) {
-        if(!interaction.user.hasPermission("ADMINISTRATOR")) return interaction.reply({
-            content: "You dont have enough permissions!",
-            ephemeral: true
-        });
         switch(interaction.options.getString("category")){
             case 'create_room': {
                 interaction.channel.send({
