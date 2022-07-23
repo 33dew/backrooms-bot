@@ -34,7 +34,7 @@ module.exports = {
         updateRoom(room_name, r);
     },
     isUserHasRoom: async (userID) => {
-        await Room.findOne({owner: `${userID}`}, (err, room) => {
+        Room.findOne({owner: `${userID}`}, (err, room) => {
             if (err) {
                 console.log(err);
             }

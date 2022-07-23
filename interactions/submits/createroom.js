@@ -3,7 +3,8 @@ const { isUserHasRoom, saveRoom } = require('../../db/roomHandler')
 
 module.exports = {
     async execute(interaction) {
-        if(isUserHasRoom(interaction.user.id)) return interaction.reply({
+        let isUser = await isUserHasRoom(interaction.user.id)
+        if(isUser) return interaction.reply({
             content: 'You have already room',
             ephemeral: true
         })
