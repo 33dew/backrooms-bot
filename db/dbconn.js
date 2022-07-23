@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true,
     dbName: 'DiscordBackrooms'
 }).then(() => {
     console.log('Connected to Database');
