@@ -1,4 +1,4 @@
-const { ModalBuilder, TextInputBuilder, TextInputStyle } = require("discord.js");
+const { ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder } = require("discord.js");
 
 module.exports = {
     async execute(interaction) {
