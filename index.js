@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { Client, GatewayIntentBits, Collection } = require('discord.js');
+const { Client, GatewayIntentBits, Collection, InteractionType } = require('discord.js');
 const fs = require('fs');
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages] });
 
@@ -20,7 +20,11 @@ client.on('ready', () => {
 });
 
 client.on('interactionCreate', async interaction => {
-  if (interaction.isChatInputCommand()){
+  if(interaction.type === InteractionType.ModalSubmit) {
+    if(interaction.customId === 'create-room') {
+      require('./interactions/submits/createroom').execute(interaction)
+    } 
+  } else if (interaction.isChatInputCommand()){
     const command = client.commands.get(interaction.commandName)
     if(!command) return;
     try {
@@ -32,8 +36,7 @@ client.on('interactionCreate', async interaction => {
         ephemeral: true
       })
     }
-  }
-  if(interaction.isButton()){
+  } else if(interaction.isButton()){
     if(fs.existsSync(`./interactions/buttons/${interaction.customId}.js`)){ 
       const button = require(`./interactions/buttons/${interaction.customId}.js`)
       try {
