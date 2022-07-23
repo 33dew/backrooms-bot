@@ -1,4 +1,4 @@
-const { Room } = require('./models/room')
+const Room = require('./models/room')
 module.exports = {
     registerRoom (room) {
         return new Promise((resolve, reject) => {

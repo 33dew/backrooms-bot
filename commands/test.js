@@ -16,14 +16,7 @@ module.exports = {
             name: interaction.options.getString("teststring"),
             owner: interaction.user.id,
             users: [],
-            chats: ['123', '321', '132'],
-            settings: {
-                    isConfigured: false,
-                    isArchived: false,
-                    usersCount: 1,
-                    chatsCount: 3,
-                    options: []
-            }
+            chats: ['123', '321', '132']
         }))
         interaction.reply({
             content: `Test ${interaction.options.getString("teststring")}`,
