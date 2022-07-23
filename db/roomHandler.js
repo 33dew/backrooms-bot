@@ -2,12 +2,13 @@ const {registerRoom, getRoom, updateRoom} = require('./controllers/roomControlle
 const Room = require('./models/room');
 
 module.exports = {
-    saveRoom: (name, ownerID, chatsIDs) => {
+    saveRoom: (name, ownerID, chatsIDs, categoryID) => {
         registerRoom(new Room(
             {
                 name: name,  
                 owner: ownerID, 
-                chats: chatsIDs
+                chats: chatsIDs,
+                category: categoryID
             }
         ));
     },
@@ -18,6 +19,7 @@ module.exports = {
             owner: r.owner,
             users: r.users,
             chats: r.chats,
+            category: r.category,
             settings: r.settings
         };
         return o;
@@ -28,6 +30,7 @@ module.exports = {
             owner: room_data.owner,
             users: room_data.users,
             chats: room_data.chats,
+            category: room_data.category,
             settings: room_data.settings
         });
 

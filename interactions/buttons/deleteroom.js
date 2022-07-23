@@ -1,12 +1,21 @@
-const { ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder } = require("discord.js");
+const { ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder, PermissionFlagsBits } = require("discord.js");
 const { getRoom, updateRoom } = require('../../db/roomHandler')
 module.exports = {
     async execute(interaction) {
         const room = await getRoom(interaction.user.id)
         room.settings = {...room.settings, isArchived: true}
-        console.log(room)
-        await interaction.reply({
-            content: 'test'
+        updateRoom(interaction.user.id, room)
+        const channel = await interaction.guild.channels.cache.get(room.category)
+        channel.overwritePermissions({
+            id: interaction.user.id,
+            deny: [PermissionFlagsBits.ViewChannel]
         })
+        for(const chat in room.chats){
+            const c = await interaction.guild.channels.cache.get(chat)
+            c.overwritePermissions({
+                id: interaction.user.id,
+                deny: [PermissionFlagsBits.ViewChannel]
+            })
+        }
     }
 }
