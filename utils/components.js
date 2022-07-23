@@ -13,13 +13,13 @@ module.exports = {
                     new ButtonBuilder()
                         .setCustomId('addfriend')
                         .setLabel('Add friend!')
-                        .setStyle(ButtonStyle.Primary),
+                        .setStyle(ButtonStyle.Success),
                 )
                 .addComponents(
                     new ButtonBuilder()
                         .setCustomId('removefriend')
                         .setLabel('Remove friend!')
-                        .setStyle(ButtonStyle.Danger),
+                        .setStyle(ButtonStyle.Primary),
                 )
                 .addComponents(
                     new ButtonBuilder()
