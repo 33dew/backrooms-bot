@@ -6,8 +6,8 @@ const commands = [
 ]
 	.map(command => command.toJSON());
 
-const rest = new REST({ version: '10' }).setToken("MTAwMDE4ODI4Mjg0MTM1MDE0NA.Gzxnfy.TP_61e1CZHVWolRrQyBYPWYTpY-OomWq-mD4Es");
+const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
 
-rest.put(Routes.applicationGuildCommands("1000188282841350144", "815333240595415090"), { body: commands })
+rest.put(Routes.applicationGuildCommands(process.env.S_ONE, process.env.S_TWO), { body: commands })
 	.then(() => console.log('Successfully registered application commands.'))
 	.catch(console.error);

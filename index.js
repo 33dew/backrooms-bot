@@ -1,8 +1,10 @@
+require('dotenv').config();
 const { Client, GatewayIntentBits } = require('discord.js');
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
+  require('./commands.js');
 });
 
 client.on('interactionCreate', async interaction => {
@@ -13,5 +15,4 @@ client.on('interactionCreate', async interaction => {
   }
 });
 
-client.login('MTAwMDE4ODI4Mjg0MTM1MDE0NA.Gzxnfy.TP_61e1CZHVWolRrQyBYPWYTpY-OomWq-mD4Es');
-require('./commands.js');
+client.login(process.env.TOKEN);
