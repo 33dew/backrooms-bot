@@ -34,7 +34,7 @@ module.exports = {
         updateRoom(room_name, r);
     },
     isUserHasRoom: (userID) => {
-        Room.findOne({owner: userID}, (err, room) => {
+        Room.findOne({owner: `${userID}`}, (err, room) => {
             if (err) {
                 console.log(err);
             }

@@ -3,7 +3,7 @@ const { isUserHasRoom, saveRoom } = require('../../db/roomHandler')
 
 module.exports = {
     async execute(interaction) {
-        if(isUserHasRoom(interaction.user.id.toString())) return interaction.reply({
+        if(isUserHasRoom(interaction.user.id)) return interaction.reply({
             content: 'You have already room'
         })
         const guild = interaction.guild
