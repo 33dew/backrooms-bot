@@ -1,8 +1,10 @@
 const { ChannelType, PermissionFlagsBits } = require('discord.js')
-const { registerRoom } = require('../../db/roomActions')
-const Room = require('../../db/models/room')
+const { isUserHasRoom, saveRoom } = require('../../db/roomHandler')
 module.exports = {
     async execute(interaction) {
+        if(isUserHasRoom(interaction.user.id)) return interaction.reply({
+            content: 'You have already room'
+        })
         const guild = interaction.guild
         const category = await guild.channels.create({
             name: interaction.fields.getTextInputValue('create-room-input'),
@@ -59,12 +61,7 @@ module.exports = {
                 },
             ]
         })
-        registerRoom(new Room({
-            name: interaction.fields.getTextInputValue('create-room-input'),
-            owner: interaction.user.id,
-            users: [],
-            chats: [c1.id, c2.id, c3.id]
-        }))
+        saveRoom(interaction.fields.getTextInputValue('create-room-input'), interaction.user.id, [c1.id, c2.id, c3.id]);
         interaction.reply({
             content: `Rooms created <#${c2.id}>`,
             ephemeral: true
