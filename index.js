@@ -78,7 +78,7 @@ client.on('interactionCreate', async interaction => {
           name: e.name,
           type: ChannelType.GuildVoice,
           userLimit: e.size,
-          parent: category,
+          parent: categoryChannel,
           permissionOverwrites: [
               {
                   id: interaction.guild.id,
