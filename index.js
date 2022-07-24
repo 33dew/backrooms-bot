@@ -32,7 +32,7 @@ client.on('interactionCreate', async interaction => {
     } catch(err) {
       if(err) console.error(err)
       await interaction.reply({
-        content: 'Smth went wrong!',
+        content: 'Coś poszło nie tak!',
         ephemeral: true
       })
     }

@@ -14,5 +14,11 @@ module.exports = {
                         .setCustomId('deleteroom')
                         .setLabel('Usuń strefę!')
                         .setStyle(ButtonStyle.Danger),
+                )
+                .addComponents(
+                    new ButtonBuilder()
+                        .setCustomId('settemplate')
+                        .setLabel('Ustaw szablon!')
+                        .setStyle(ButtonStyle.Primary),
                 ),
 }

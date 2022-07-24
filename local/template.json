@@ -1,0 +1,61 @@
+[
+    {
+        "_name": "default",
+        "text-chats": [
+            "ogólny"
+        ],
+        "voice-chats": [
+            {
+                "name": "głosowy",
+                "size": -1
+            }
+        ]
+    },
+    {
+        "_name": "LoL",
+        "text-chats": [
+            "ogólny"
+        ],
+        "voice-chats": [
+            {
+                "name": "solo/duo",
+                "size": 2
+            },
+            {
+                "name": "draft/flex",
+                "size": 5
+            },
+            {
+                "name": "TFT",
+                "size": 8
+            },
+            {
+                "name": "custom",
+                "size": 10
+            }
+        ]
+    },
+    {
+        "_name": "Minecraft",
+        "text-chats": [
+            "ogólny",
+            "paczki",
+            "komendy"
+        ],
+        "voice-chats": [
+            {
+                "name": "głosowy",
+                "size": -1
+            },
+            {
+                "name": "budowanie czas",
+                "size": -1
+            },
+            {
+                "name": "afk-klocki",
+                "size": -1
+            }
+        ]
+    }
+
+]
