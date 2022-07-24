@@ -16,6 +16,7 @@ module.exports = {
             content: 'You dont have room yet',
             ephemeral: true
         })
+        console.log(!isUserInRoom(interaction.user.id, interaction.options.getMember("user").id))
         if(isUserInRoom(interaction.user.id, interaction.options.getMember("user").id)) return interaction.reply({
             content: 'This user is already in your room',
             ephemeral: true
