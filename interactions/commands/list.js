@@ -13,7 +13,7 @@ module.exports = {
             ephemeral: true
         })
         const room = await getRoom(interaction.user.id)
-        const users = room.map(user => `> <@${user}>`)
+        const users = room.users.map(user => `> <@${user}>`)
         interaction.reply({
             content: users.join('\n'),
             ephemeral: true
