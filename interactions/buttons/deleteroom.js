@@ -6,7 +6,7 @@ module.exports = {
         archiveRoom(`${interaction.user.id}`)
         const channel = await interaction.guild.channels.cache.get(room.category)
         channel.permissionOverwrites.edit(interaction.user, { ViewChannel: false })
-        room.chats.forEach(e => {
+        room.chats.forEach(async e => {
             const c = await interaction.guild.channels.cache.get(e)
             console.log(c)
             c.permissionOverwrites.edit(interaction.user, { ViewChannel: false })
