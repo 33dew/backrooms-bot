@@ -59,7 +59,7 @@ module.exports = {
     },
     isUserInRoom: async (ownerID, userID) => {
         try {
-            const room = await Room.findOne({owner: `${ownerID}`, users: {$all: [`${userID}`]} });
+            const room = await Room.findOne({owner: `${ownerID}`, "settings.isArchived": false, users: {$all: [`${userID}`]} });
             if(room) return true;
         }   
         catch (err) {
