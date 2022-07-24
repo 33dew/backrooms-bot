@@ -33,7 +33,7 @@ const RoomSchema = new Schema({
             isConfigured: false,
             isArchived: false,
             usersCount: 1,
-            chatsCount: 3, // 1 for options (for owner), 2 for general, 3 for voice
+            chatsCount: 1, // 1 for options (for owner), 2 for general, 3 for voice
             options: []
         }
     }
