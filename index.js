@@ -60,8 +60,8 @@ client.on('interactionCreate', async interaction => {
       const template = await returnTemplate(interaction.values[0])
       const categoryChannel = interaction.guild.channels.cache.get(categoryID)
       let chats = [];
-      await template[0].text_chats.forEach(e => {
-        interaction.guild.channels.create({
+      await template[0].text_chats.forEach(async e => {
+        const c = await interaction.guild.channels.create({
           name: e,
           type: ChannelType.GuildText,
           parent: categoryChannel,
@@ -75,10 +75,12 @@ client.on('interactionCreate', async interaction => {
                   allow: [PermissionFlagsBits.ViewChannel, PermissionFlagsBits.ManageMessages],
               },
           ]
-        }).then(a => chats.push(a.id))
+        })
+        chats.push(c.id)
+        console.log(c.id)
       })
-      await template[0].voice_chats.forEach(e => {
-        interaction.guild.channels.create({
+      await template[0].voice_chats.forEach(async e => {
+        const c = await interaction.guild.channels.create({
           name: e.name,
           type: ChannelType.GuildVoice,
           userLimit: e.size,
@@ -93,7 +95,9 @@ client.on('interactionCreate', async interaction => {
                   allow: [PermissionFlagsBits.ViewChannel, PermissionFlagsBits.MoveMembers, PermissionFlagsBits.MuteMembers],
               },
           ]
-        }).then(a => chats.push(a.id))
+        })
+        chats.push(c.id)
+        console.log(c.id)
       })
       await interaction.channel.bulkDelete(99)
       interaction.channel.send({
