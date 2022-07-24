@@ -1,10 +1,10 @@
 [
     {
         "_name": "Domyślny",
-        "text-chats": [
+        "text_chats": [
             "ogólny"
         ],
-        "voice-chats": [
+        "voice_chats": [
             {
                 "name": "głosowy",
                 "size": -1
@@ -13,10 +13,10 @@
     },
     {
         "_name": "LoL",
-        "text-chats": [
+        "text_chats": [
             "ogólny"
         ],
-        "voice-chats": [
+        "voice_chats": [
             {
                 "name": "solo/duo",
                 "size": 2
@@ -37,12 +37,12 @@
     },
     {
         "_name": "Minecraft",
-        "text-chats": [
+        "text_chats": [
             "ogólny",
             "paczki",
             "komendy"
         ],
-        "voice-chats": [
+        "voice_chats": [
             {
                 "name": "głosowy",
                 "size": -1
@@ -59,11 +59,11 @@
     },
     {
         "_name": "Programowanie",
-        "text-chats": [
+        "text_chats": [
             "ogólny",
             "linki"
         ],
-        "voice-chats": [
+        "voice_chats": [
             {
                 "name": "głosowy",
                 "size": -1

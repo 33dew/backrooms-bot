@@ -55,7 +55,42 @@ client.on('interactionCreate', async interaction => {
     if(interaction.customId === "template"){
       const categoryID = await getCategory(interaction.user.id, interaction.channel.id)
       const template = await returnTemplate(interaction.values[0])
-      console.log(template)
+      const categoryChannel = interaction.guild.channels.cache.get(categoryID)
+      template[0].text_chats.forEach(e => {
+        await guild.channels.create({
+          name: e,
+          type: ChannelType.GuildText,
+          parent: categoryChannel,
+          permissionOverwrites: [
+              {
+                  id: interaction.guild.id,
+                  deny: [PermissionFlagsBits.ViewChannel],
+              },
+              {
+                  id: interaction.user.id,
+                  allow: [PermissionFlagsBits.ViewChannel, PermissionFlagsBits.ManageMessages],
+              },
+          ]
+        })
+      })
+      template[0].voice_chats.forEach(e => {
+        await guild.channels.create({
+          name: e.name,
+          type: ChannelType.GuildVoice,
+          userLimit: e.size,
+          parent: category,
+          permissionOverwrites: [
+              {
+                  id: interaction.guild.id,
+                  deny: [PermissionFlagsBits.ViewChannel],
+              },
+              {
+                  id: interaction.user.id,
+                  allow: [PermissionFlagsBits.ViewChannel, PermissionFlagsBits.MoveMembers, PermissionFlagsBits.MuteMembers],
+              },
+          ]
+      })
+      })
 
       await interaction.update({
         content: `Ustawiono szablon: \`${interaction.values[0]}\``,
