@@ -5,17 +5,11 @@ module.exports = {
         const room = await getRoom(interaction.user.id)
         await archiveRoom(interaction.user.id)
         const channel = await interaction.guild.channels.cache.get(room.category)
-        channel.permissionOverwrites.edit({
-            id: interaction.user,
-            deny: [PermissionFlagsBits.ViewChannel]
-        })
-        for(const chat in room.chats){
-            const c = await interaction.guild.channels.cache.get(chat)
+        channel.permissionOverwrites.edit(interaction.user, { ViewChannel: false })
+        room.chat.forEach(e => {
+            const c = await interaction.guild.channels.cache.get(e)
             console.log(c)
-            c.permissionOverwrites.edit({
-                id: interaction.user,
-                deny: [PermissionFlagsBits.ViewChannel]
-            })
-        }
+            c.permissionOverwrites.edit(interaction.user, { ViewChannel: false })
+        })
     }
 }
