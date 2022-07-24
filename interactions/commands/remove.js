@@ -16,14 +16,14 @@ module.exports = {
             content: 'You dont have room yet',
             ephemeral: true
         })
-        console.log(isUserInRoom(interaction.user.id, interaction.options.getMember("user").id))
-        if(!isUserInRoom(interaction.user.id, interaction.options.getMember("user").id)) return interaction.reply({
+        let isUserIn = await isUserInRoom(interaction.user.id, interaction.options.getMember("user").id)
+        if(!isUserIn) return interaction.reply({
             content: 'This user isn\'t in your room yet',
             ephemeral: true
         })
         removeUser(interaction.user.id, interaction.options.getMember("user").id)
         interaction.reply({
-            content: `User <@${interaction.options.getMember("user").id}> remove from your room!`,
+            content: `User <@${interaction.options.getMember("user").id}> had been removed from your room!`,
             ephemeral: true
         });
     }
