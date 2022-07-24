@@ -102,10 +102,6 @@ client.on('interactionCreate', async interaction => {
         embeds: [configureRoomEmbed],
         components: [configureRoomComponent]
       })
-      await interaction.update({
-        content: `Ustawiono szablon: \`${interaction.values[0]}\``,
-        components: []
-      })
       addChannels(interaction.user.id, chats)
     }
   }
