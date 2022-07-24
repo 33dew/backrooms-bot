@@ -22,7 +22,7 @@ module.exports = {
         })
         const role = guild.roles.cache.find(r => r.name === "@everyone");
         const c1 = await guild.channels.create({
-            name: "Konfiguracja",
+            name: "config",
             type: ChannelType.GuildText,
             parent: category,
             permissionOverwrites: [
@@ -37,7 +37,7 @@ module.exports = {
             ]
         })
         const c2 = await guild.channels.create({
-            name: "Ogólny",
+            name: "general",
             type: ChannelType.GuildText,
             parent: category,
             permissionOverwrites: [
@@ -47,12 +47,12 @@ module.exports = {
                 },
                 {
                     id: interaction.user.id,
-                    allow: [PermissionFlagsBits.ViewChannel],
+                    allow: [PermissionFlagsBits.ViewChannel, PermissionFlagsBits.ManageMessages],
                 },
             ]
         })
         const c3 = await guild.channels.create({
-            name: "Voice",
+            name: "voice",
             type: ChannelType.GuildVoice,
             parent: category,
             permissionOverwrites: [
@@ -62,7 +62,7 @@ module.exports = {
                 },
                 {
                     id: interaction.user.id,
-                    allow: [PermissionFlagsBits.ViewChannel],
+                    allow: [PermissionFlagsBits.ViewChannel, PermissionFlagsBits.ModerateMembers],
                 },
             ]
         })
