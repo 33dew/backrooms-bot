@@ -10,5 +10,8 @@ module.exports = {
             console.log(c)
             c.permissionOverwrites.edit(interaction.user, { ViewChannel: false })
         })
+        interaction.reply({
+            content: "Section archived"
+        })
     }
 }
