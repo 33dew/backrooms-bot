@@ -3,6 +3,8 @@ const { Client, GatewayIntentBits, Collection, InteractionType, ChannelType, Per
 const { getCategory } = require('./db/roomHandler')
 const { returnTemplate } = require('./local/template')
 const fs = require('fs');
+const { configureRoomComponent } = require('../../utils/components')
+const { configureRoomEmbed } = require('../../utils/embeds')
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages] });
 
 const mongoose = require('mongoose');
@@ -91,7 +93,11 @@ client.on('interactionCreate', async interaction => {
           ]
       })
       })
-
+      interaction.channel.bulkDelete(99)
+      interaction.channel.send({
+        embeds: [configureRoomEmbed],
+        components: [configureRoomComponent]
+      })
       await interaction.update({
         content: `Ustawiono szablon: \`${interaction.values[0]}\``,
         components: []

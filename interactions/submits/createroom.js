@@ -1,6 +1,6 @@
 const { ChannelType, PermissionFlagsBits } = require('discord.js')
 const { isUserHasRoom, saveRoom } = require('../../db/roomHandler')
-const { configureRoomComponent } = require('../../utils/components')
+const { configureRoomTemplate } = require('../../utils/components')
 const { configureRoomEmbed } = require('../../utils/embeds')
 
 module.exports = {
@@ -69,7 +69,7 @@ module.exports = {
         saveRoom(interaction.fields.getTextInputValue('create-room-input'), interaction.user.id, [c1.id], category.id);
         c1.send({
             embeds: [configureRoomEmbed],
-            components: [configureRoomComponent]
+            components: [configureRoomTemplate]
         })
         interaction.reply({
             content: `Strefa stworzona <#${c1.id}>`,
