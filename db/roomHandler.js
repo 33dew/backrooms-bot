@@ -66,5 +66,15 @@ module.exports = {
             console.log(err);
         }
         return false;
+    },
+    getCategory: async (ownerID, channelID) => {
+        try {
+            const room = await Room.findOne({owner: `${ownerID}`, "settings.isArchived": false, chats: {$all: [`${channelID}`]} });
+            if(room) return room.category;
+        }   
+        catch (err) {
+            console.log(err);
+        }
+        return null;
     }
 }

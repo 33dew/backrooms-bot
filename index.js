@@ -1,5 +1,7 @@
 require('dotenv').config();
 const { Client, GatewayIntentBits, Collection, InteractionType } = require('discord.js');
+const { getCategory } = require('./db/roomHandler')
+const { returnTemplate } = require('./local/template')
 const fs = require('fs');
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages] });
 
@@ -51,9 +53,12 @@ client.on('interactionCreate', async interaction => {
     }
   } else if(interaction.isSelectMenu()){
     if(interaction.customId === "template"){
-      console.log(interaction)
+      const categoryID = await getCategory(interaction.user.id, interaction.channel.id)
+      const template = await returnTemplate(interaction.values[0])
+      console.log(template)
+
       await interaction.update({
-        content: "Ustawiono szablon",
+        content: `Ustawiono szablon: \`${interaction.values[0]}\``,
         components: []
       })
     }
