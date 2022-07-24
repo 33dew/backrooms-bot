@@ -3,8 +3,8 @@ const { Client, GatewayIntentBits, Collection, InteractionType, ChannelType, Per
 const { getCategory } = require('./db/roomHandler')
 const { returnTemplate } = require('./local/template')
 const fs = require('fs');
-const { configureRoomComponent } = require('../../utils/components')
-const { configureRoomEmbed } = require('../../utils/embeds')
+const { configureRoomComponent } = require('./utils/components')
+const { configureRoomEmbed } = require('./utils/embeds')
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages] });
 
 const mongoose = require('mongoose');
