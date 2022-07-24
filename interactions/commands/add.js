@@ -1,6 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js')
-const { getRoom } = require('../../db/controllers/roomController')
-const { addUser, isUserHasRoom, isUserInRoom } = require('../../db/roomHandler')
+const { addUser, isUserHasRoom, isUserInRoom, getRoom } = require('../../db/roomHandler')
 
 module.exports = {
     data:  new SlashCommandBuilder()
@@ -22,8 +21,12 @@ module.exports = {
             content: 'Użytkownik jest już w twojej strefie',
             ephemeral: true
         })
-        addUser(interaction.user.id, interaction.options.getMember("user").id)
         const room = await getRoom(interaction.user.id)
+        if(!room.settings.isConfigured) return interaction.reply({
+            content: 'Musisz wybrac szablon zanim dodasz osobe',
+            ephemeral: true
+        })
+        addUser(interaction.user.id, interaction.options.getMember("user").id)
         const channel = await interaction.guild.channels.cache.get(room.category)
         channel.permissionOverwrites.edit(interaction.options.getMember("user"), { ViewChannel: true })
         room.chats.forEach(async (e, i) => {

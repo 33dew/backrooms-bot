@@ -1,4 +1,4 @@
-const {registerRoom, getRoom, updateRoom, archiveRoom, addUser, removeUser, addChannel} = require('./controllers/roomController');
+const {registerRoom, getRoom, updateRoom, archiveRoom, addUser, removeUser, addChannel, configureRoom} = require('./controllers/roomController');
 const Room = require('./models/room');
 
 module.exports = {
@@ -14,6 +14,9 @@ module.exports = {
     },
     archiveRoom: (ownerID) => {
         archiveRoom(ownerID)
+    },
+    configureRoom: (ownerID) => {
+        configureRoom(ownerID)
     },
     addChannel: async (ownerID, channels) => {
         const room = await getRoom(ownerID)

@@ -3,7 +3,7 @@ const { Client, GatewayIntentBits, Collection, InteractionType, ChannelType, Per
 const { getCategory } = require('./db/roomHandler')
 const { returnTemplate } = require('./local/template')
 const fs = require('fs');
-const { addChannel } = require('./db/roomHandler')
+const { addChannel, configureRoom } = require('./db/roomHandler')
 const { configureRoomComponent } = require('./utils/components')
 const { configureRoomEmbed } = require('./utils/embeds')
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages] });
@@ -101,6 +101,7 @@ client.on('interactionCreate', async interaction => {
         embeds: [configureRoomEmbed],
         components: [configureRoomComponent]
       })
+      configureRoom(interaction.user.id)
     }
   }
 });
