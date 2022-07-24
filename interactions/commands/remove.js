@@ -3,7 +3,7 @@ const { isUserHasRoom, isUserInRoom, removeUser } = require('../../db/roomHandle
 
 module.exports = {
     data:  new SlashCommandBuilder()
-        .setName("add")
+        .setName("remove")
         .setDescription("Remove user from your private room")
         .addMentionableOption(input =>
             input.setName("user")
