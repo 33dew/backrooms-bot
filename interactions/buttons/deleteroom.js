@@ -3,8 +3,11 @@ const { getRoom, updateRoom } = require('../../db/roomHandler')
 module.exports = {
     async execute(interaction) {
         const room = await getRoom(interaction.user.id)
-        room.settings = {...room.settings, isArchived: true}
-        updateRoom(interaction.user.id, room)
+        updateRoom(interaction.user.id, {
+            settings: {
+                isArchived: true
+            }
+        })
         const channel = await interaction.guild.channels.cache.get(room.category)
         channel.overwritePermissions({
             id: interaction.user.id,
