@@ -22,6 +22,13 @@ module.exports = {
             ephemeral: true
         })
         addUser(interaction.user.id, interaction.options.getMember("user").id)
+        const room = await getRoom(interaction.user.id)
+        const channel = await interaction.guild.channels.cache.get(room.category)
+        channel.permissionOverwrites.edit(interaction.options.getMember("user"), { ViewChannel: true })
+        room.chats.forEach(async e => {
+            const c = await interaction.guild.channels.cache.get(e)
+            c.permissionOverwrites.edit(interaction.options.getMember("user"), { ViewChannel: true })
+        })
         interaction.reply({
             content: `User <@${interaction.options.getMember("user").id}> has been added to your room!`,
             ephemeral: true
