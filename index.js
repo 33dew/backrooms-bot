@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { Client, GatewayIntentBits, Collection, InteractionType } = require('discord.js');
+const { Client, GatewayIntentBits, Collection, InteractionType, ChannelType, PermissionFlagsBits } = require('discord.js');
 const { getCategory } = require('./db/roomHandler')
 const { returnTemplate } = require('./local/template')
 const fs = require('fs');
