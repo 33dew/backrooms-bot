@@ -35,7 +35,7 @@ module.exports = {
     },
     archiveRoom(ownerID) {
         return new Promise((resolve, reject) => {
-            Room.updateOne({ owner: ownerID, "settings.isArchive": false }, { "settings.isArchive": true }, (err, room) => {
+            Room.updateOne({ owner: ownerID, "settings.isArchived": false }, { "settings.isArchived": true }, (err, room) => {
                 if (err) {
                     reject(err);
                 } else {
