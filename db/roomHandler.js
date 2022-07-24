@@ -17,23 +17,11 @@ module.exports = {
     },
     addUser: async (ownerID, userID) => {
         const room = await getRoom(ownerID)
-        Room.updateOne({ owner: ownerID, "settings.isArchived": false }, { users: [...room.users, userID] }, (err, room) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(room);
-            }
-        });
+        addUser(ownerID, [...room.users, userID])
     },
     removeUser: async (ownerID, userID) => {
         const room = await getRoom(ownerID)
-        Room.updateOne({ owner: ownerID, "settings.isArchived": false }, { users: room.users.filter(user => user != userID) }, (err, room) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(room);
-            }
-        });
+        removeUser(ownerID, room.users.filter(user => user != userID))
     },
     getRoom: async (ownerID) => {
         const r = await getRoom(ownerID);

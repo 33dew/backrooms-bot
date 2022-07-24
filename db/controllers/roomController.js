@@ -43,5 +43,27 @@ module.exports = {
                 }
             });
         });
+    },
+    addUser(ownerID, users) {
+        return new Promise((resolve, reject) => {
+            Room.updateOne({ owner: ownerID, "settings.isArchived": false }, { users }, (err, room) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(room);
+                }
+            });
+        });
+    },
+    removeUser(ownerID, users) {
+        return new Promise((resolve, reject) => {
+            Room.updateOne({ owner: ownerID, "settings.isArchived": false }, { users }, (err, room) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(room);
+                }
+            });
+        });
     }
 }
