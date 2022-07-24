@@ -56,7 +56,7 @@ client.on('interactionCreate', async interaction => {
       const categoryID = await getCategory(interaction.user.id, interaction.channel.id)
       const template = await returnTemplate(interaction.values[0])
       const categoryChannel = interaction.guild.channels.cache.get(categoryID)
-      template[0].text_chats.forEach(e => {
+      template[0].text_chats.forEach(async e => {
         await guild.channels.create({
           name: e,
           type: ChannelType.GuildText,
@@ -73,7 +73,7 @@ client.on('interactionCreate', async interaction => {
           ]
         })
       })
-      template[0].voice_chats.forEach(e => {
+      template[0].voice_chats.forEach(async e => {
         await guild.channels.create({
           name: e.name,
           type: ChannelType.GuildVoice,
