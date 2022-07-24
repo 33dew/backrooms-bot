@@ -15,7 +15,7 @@ module.exports = {
         const room = await getRoom(interaction.user.id)
         const users = room.users.map(user => `> <@${user}>`)
         interaction.reply({
-            content: users.join('\n'),
+            content: users.length > 0 ? users.join('\n') : "Empty list",
             ephemeral: true
         });
     }
