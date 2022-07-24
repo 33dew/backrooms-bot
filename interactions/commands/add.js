@@ -5,10 +5,10 @@ const { addUser, isUserHasRoom, isUserInRoom } = require('../../db/roomHandler')
 module.exports = {
     data:  new SlashCommandBuilder()
         .setName("add")
-        .setDescription("Add user to your private room")
+        .setDescription("Dodaj osobę do swojego pokoju")
         .addUserOption(input =>
             input.setName("user")
-            .setDescription('Which user')
+            .setDescription('Kogo?')
             .setRequired(true)
         ),
     async execute(interaction) {

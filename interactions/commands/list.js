@@ -5,7 +5,7 @@ const { isUserHasRoom } = require('../../db/roomHandler')
 module.exports = {
     data:  new SlashCommandBuilder()
         .setName("list")
-        .setDescription("List of users who have access to your section"),
+        .setDescription("Lista osób w pokoju"),
     async execute(interaction) {
         let isUser = await isUserHasRoom(interaction.user.id)
         if(!isUser) return interaction.reply({

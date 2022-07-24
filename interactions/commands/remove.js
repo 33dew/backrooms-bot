@@ -5,10 +5,10 @@ const { isUserHasRoom, isUserInRoom, removeUser } = require('../../db/roomHandle
 module.exports = {
     data:  new SlashCommandBuilder()
         .setName("remove")
-        .setDescription("Remove user from your private room")
+        .setDescription("Usuń użytkownika z pokoju")
         .addUserOption(input =>
             input.setName("user")
-            .setDescription('Which user')
+            .setDescription('Kogo?')
             .setRequired(true)
         ),
     async execute(interaction) {

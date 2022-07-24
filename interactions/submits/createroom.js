@@ -7,7 +7,7 @@ module.exports = {
     async execute(interaction) {
         let isUser = await isUserHasRoom(interaction.user.id)
         if(isUser) return interaction.reply({
-            content: 'You have already room',
+            content: 'Posiadasz już aktywny pokój!',
             ephemeral: true
         })
         const guild = interaction.guild
