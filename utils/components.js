@@ -11,18 +11,6 @@ module.exports = {
     configureRoomComponent: new ActionRowBuilder()
                 .addComponents(
                     new ButtonBuilder()
-                        .setCustomId('addfriend')
-                        .setLabel('Add friend!')
-                        .setStyle(ButtonStyle.Success),
-                )
-                .addComponents(
-                    new ButtonBuilder()
-                        .setCustomId('removefriend')
-                        .setLabel('Remove friend!')
-                        .setStyle(ButtonStyle.Primary),
-                )
-                .addComponents(
-                    new ButtonBuilder()
                         .setCustomId('deleteroom')
                         .setLabel('Delete section!')
                         .setStyle(ButtonStyle.Danger),

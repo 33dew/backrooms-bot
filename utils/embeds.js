@@ -10,7 +10,7 @@ module.exports = {
     configureRoomEmbed: new EmbedBuilder()
         .setColor(0x0066FF)
         .setTitle('Configuration')
-        .setDescription('Click buttons below to edit your section!')
+        .setDescription('Here you can change configuration for your room\n\n> **/add <user>** - will add someone to your section\n> **/remove <user>** - will remove someone from your section')
         .setFooter({ text: '• Backrooms'})
         .setTimestamp()
 }
