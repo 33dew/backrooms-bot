@@ -55,9 +55,9 @@ module.exports = {
             });
         });
     },
-    addChannels(ownerID, chats) {
+    addChannel(ownerID, chats) {
         return new Promise((resolve, reject) => {
-            Room.updateOne({ owner: ownerID, "settings.isArchived": false }, { chats: [...chats] }, (err, room) => {
+            Room.updateOne({ owner: ownerID, "settings.isArchived": false }, { chats }, (err, room) => {
                 if (err) {
                     reject(err);
                 } else {
