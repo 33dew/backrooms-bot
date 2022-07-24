@@ -66,7 +66,7 @@ module.exports = {
         //         },
         //     ]
         // })
-        saveRoom(interaction.fields.getTextInputValue('create-room-input'), interaction.user.id, [c1.id, c2.id, c3.id], category.id);
+        saveRoom(interaction.fields.getTextInputValue('create-room-input'), interaction.user.id, [c1.id], category.id);
         c1.send({
             embeds: [configureRoomEmbed],
             components: [configureRoomComponent]
