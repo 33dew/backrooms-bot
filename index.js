@@ -102,6 +102,7 @@ client.on('interactionCreate', async interaction => {
         embeds: [configureRoomEmbed],
         components: [configureRoomComponent]
       })
+      console.log(chats)
       addChannels(interaction.user.id, chats)
     }
   }
