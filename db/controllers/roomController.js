@@ -13,7 +13,7 @@ module.exports = {
     },
     getRoom (ownerID) {
         return new Promise((resolve, reject) => {
-            Room.findOne({ owner: ownerID }, (err, room) => {
+            Room.findOne({ owner: ownerID, "settings.isArchived": false }, (err, room) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -24,7 +24,7 @@ module.exports = {
     },
     updateRoom (ownerID, room) {
         return new Promise((resolve, reject) => {
-            Room.findOneAndUpdate({ owner: ownerID }, room, (err, room) => {
+            Room.findOneAndUpdate({ owner: ownerID, "settings.isArchived": false }, room, (err, room) => {
                 if (err) {
                     reject(err);
                 } else {
