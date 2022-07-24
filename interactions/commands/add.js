@@ -28,7 +28,7 @@ module.exports = {
         channel.permissionOverwrites.edit(interaction.options.getMember("user"), { ViewChannel: true })
         room.chats.forEach(async (e, i) => {
             const c = await interaction.guild.channels.cache.get(e)
-            c.permissionOverwrites.edit(interaction.options.getMember("user"), { ViewChannel: i > 1 ? true : false })
+            c.permissionOverwrites.edit(interaction.options.getMember("user"), { ViewChannel: i > 0 ? true : false })
         })
         interaction.reply({
             content: `User <@${interaction.options.getMember("user").id}> has been added to your room!`,
