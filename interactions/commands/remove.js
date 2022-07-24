@@ -5,7 +5,7 @@ module.exports = {
     data:  new SlashCommandBuilder()
         .setName("remove")
         .setDescription("Remove user from your private room")
-        .addMentionableOption(input =>
+        .addUserOption(input =>
             input.setName("user")
             .setDescription('Which user')
             .setRequired(true)
@@ -16,7 +16,7 @@ module.exports = {
             content: 'You dont have room yet',
             ephemeral: true
         })
-        if(!isUserInRoom(interaction.user.id, interaction.option.getMentionable("user"))) return interaction.reply({
+        if(!isUserInRoom(interaction.user.id, interaction.options.getMember("user"))) return interaction.reply({
             content: 'This user isn\'t in your room yet',
             ephemeral: true
         })
