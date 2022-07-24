@@ -76,7 +76,7 @@ client.on('interactionCreate', async interaction => {
               },
           ]
         })
-        chats = [...chats, c.id]
+        chats.push(c.id)
       })
       template[0].voice_chats.forEach(async e => {
         const c = await interaction.guild.channels.create({
@@ -95,7 +95,7 @@ client.on('interactionCreate', async interaction => {
               },
           ]
         })
-        chats = [...chats, c.id]
+        chats.push(c.id)
       })
       await interaction.channel.bulkDelete(99)
       interaction.channel.send({
