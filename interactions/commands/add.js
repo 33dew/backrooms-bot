@@ -16,13 +16,14 @@ module.exports = {
             content: 'You dont have room yet',
             ephemeral: true
         })
+        console.log(interaction.options.getMember("user"))
         if(isUserInRoom(interaction.user.id, interaction.options.getMember("user"))) return interaction.reply({
             content: 'This user is already in your room',
             ephemeral: true
         })
-        addUser(interaction.user.id, interaction.option.getMentionable("user"))
+        addUser(interaction.user.id, interaction.options.getMember("user"))
         interaction.reply({
-            content: `User <@${interaction.option.getMentionable("user")}> added to your room!`,
+            content: `User <@${interaction.options.getMember("user")}> added to your room!`,
             ephemeral: true
         });
     }

@@ -20,9 +20,9 @@ module.exports = {
             content: 'This user isn\'t in your room yet',
             ephemeral: true
         })
-        removeUser(interaction.user.id, interaction.option.getMentionable("user"))
+        removeUser(interaction.user.id, interaction.options.getMember("user"))
         interaction.reply({
-            content: `User <@${interaction.option.getMentionable("user")}> remove from your room!`,
+            content: `User <@${interaction.options.getMember("user")}> remove from your room!`,
             ephemeral: true
         });
     }
