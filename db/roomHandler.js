@@ -1,4 +1,4 @@
-const {registerRoom, getRoom, updateRoom, archiveRoom} = require('./controllers/roomController');
+const {registerRoom, getRoom, updateRoom, archiveRoom, addUser, removeUser} = require('./controllers/roomController');
 const Room = require('./models/room');
 
 module.exports = {
@@ -14,6 +14,26 @@ module.exports = {
     },
     archiveRoom: (ownerID) => {
         archiveRoom(ownerID)
+    },
+    addUser: async (ownerID, userID) => {
+        const room = await getRoom(ownerID)
+        Room.updateOne({ owner: ownerID, "settings.isArchived": false }, { users: [...room.users, userID] }, (err, room) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(room);
+            }
+        });
+    },
+    removeUser: (ownerID, userID) => {
+        const room = await getRoom(ownerID)
+        Room.updateOne({ owner: ownerID, "settings.isArchived": false }, { users: room.users.filter(user => user != userID) }, (err, room) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(room);
+            }
+        });
     },
     getRoom: async (ownerID) => {
         const r = await getRoom(ownerID);
@@ -42,6 +62,16 @@ module.exports = {
     isUserHasRoom: async (userID) => {
         try {
             const room = await Room.findOne({owner: `${userID}`, 'settings.isArchived': false });
+            if(room) return true;
+        }   
+        catch (err) {
+            console.log(err);
+        }
+        return false;
+    },
+    isUserInRoom: async (ownerID, userID) => {
+        try {
+            const room = await Room.findOne({owner: `${ownerID}`, users: {$all: [`${userID}`]} });
             if(room) return true;
         }   
         catch (err) {
