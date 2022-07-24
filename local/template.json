@@ -69,5 +69,35 @@
                 "size": 0
             }
         ]
+    },
+    {
+        "_name": "Towarzyskie",
+        "text_chats": [
+            "ogólny",
+            "memy",
+            "bez-mikra"
+        ],
+        "voice_chats": [
+            {
+                "name": "głosowy",
+                "size": 0
+            },
+            {
+                "name": "ogladanie",
+                "size": 0
+            },
+            {
+                "name": "granie 1",
+                "size": 5
+            },
+            {
+                "name": "granie 2",
+                "size": 5
+            },
+            {
+                "name": "granie 3",
+                "size": 10
+            }
+        ]
     }
 ]
