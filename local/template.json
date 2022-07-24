@@ -1,6 +1,6 @@
 [
     {
-        "_name": "default",
+        "_name": "Domyślny",
         "text-chats": [
             "ogólny"
         ],
@@ -56,6 +56,18 @@
                 "size": -1
             }
         ]
+    },
+    {
+        "_name": "Programowanie",
+        "text-chats": [
+            "ogólny",
+            "linki"
+        ],
+        "voice-chats": [
+            {
+                "name": "głosowy",
+                "size": -1
+            }
+        ]
     }
-
 ]

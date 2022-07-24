@@ -49,6 +49,14 @@ client.on('interactionCreate', async interaction => {
         })
       }
     }
+  } else if(interaction.isSelectMenu()){
+    if(interaction.customId === "template"){
+      console.log(interaction)
+      await interaction.update({
+        content: "Ustawiono szablon",
+        components: []
+      })
+    }
   }
 });
 
