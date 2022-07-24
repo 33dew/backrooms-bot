@@ -25,7 +25,7 @@ module.exports = {
             }
         });
     },
-    removeUser: (ownerID, userID) => {
+    removeUser: async (ownerID, userID) => {
         const room = await getRoom(ownerID)
         Room.updateOne({ owner: ownerID, "settings.isArchived": false }, { users: room.users.filter(user => user != userID) }, (err, room) => {
             if (err) {
