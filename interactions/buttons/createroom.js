@@ -4,10 +4,10 @@ module.exports = {
     async execute(interaction) {
         const modal = new ModalBuilder()
             .setCustomId("create-room")
-            .setTitle("Creating room")
+            .setTitle("Tworzenie strefy")
         const channelName = new TextInputBuilder()
             .setCustomId("create-room-input")
-            .setLabel("Room's name")
+            .setLabel("Nazwa strefy")
             .setStyle(TextInputStyle.Short)
         const firstActionRow = new ActionRowBuilder().addComponents(channelName);
         modal.addComponents(firstActionRow)

@@ -27,7 +27,7 @@ module.exports = {
                 break;
         }
         interaction.reply({
-            content: "Sent!",
+            content: "Wysłano!",
             ephemeral: true
         });
     }

@@ -72,7 +72,7 @@ module.exports = {
             components: [configureRoomComponent]
         })
         interaction.reply({
-            content: `Rooms created <#${c2.id}>`,
+            content: `Strefa stworzona <#${c1.id}>`,
             ephemeral: true
         });
     }

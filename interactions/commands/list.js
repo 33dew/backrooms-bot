@@ -9,13 +9,13 @@ module.exports = {
     async execute(interaction) {
         let isUser = await isUserHasRoom(interaction.user.id)
         if(!isUser) return interaction.reply({
-            content: 'You dont have room yet',
+            content: 'Nie posiadasz strefy',
             ephemeral: true
         })
         const room = await getRoom(interaction.user.id)
         const users = room.users.map(user => `> <@${user}>`)
         interaction.reply({
-            content: users.length > 0 ? users.join('\n') : "Empty list",
+            content: users.length > 0 ? users.join('\n') : "Nikt nie posiada dostępu",
             ephemeral: true
         });
     }

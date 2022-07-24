@@ -14,12 +14,12 @@ module.exports = {
     async execute(interaction) {
         let isUser = await isUserHasRoom(interaction.user.id)
         if(!isUser) return interaction.reply({
-            content: 'You dont have room yet',
+            content: 'Nie posiadasz strefy',
             ephemeral: true
         })
         let isUserIn = await isUserInRoom(interaction.user.id, interaction.options.getMember("user").id)
         if(isUserIn) return interaction.reply({
-            content: 'This user is already in your room',
+            content: 'Użytkownik jest już w twojej strefie',
             ephemeral: true
         })
         addUser(interaction.user.id, interaction.options.getMember("user").id)
@@ -31,7 +31,7 @@ module.exports = {
             c.permissionOverwrites.edit(interaction.options.getMember("user"), { ViewChannel: i > 0 ? true : false })
         })
         interaction.reply({
-            content: `User <@${interaction.options.getMember("user").id}> has been added to your room!`,
+            content: `Użytkownik <@${interaction.options.getMember("user").id}> został dodany do twojej strefy!`,
             ephemeral: true
         });
     }

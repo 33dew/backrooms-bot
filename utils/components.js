@@ -5,14 +5,14 @@ module.exports = {
                 .addComponents(
                     new ButtonBuilder()
                         .setCustomId('createroom')
-                        .setLabel('Create!')
+                        .setLabel('Stwórz!')
                         .setStyle(ButtonStyle.Success),
                 ),
     configureRoomComponent: new ActionRowBuilder()
                 .addComponents(
                     new ButtonBuilder()
                         .setCustomId('deleteroom')
-                        .setLabel('Delete section!')
+                        .setLabel('Usuń strefę!')
                         .setStyle(ButtonStyle.Danger),
                 ),
 }

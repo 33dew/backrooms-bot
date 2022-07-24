@@ -3,14 +3,14 @@ const { EmbedBuilder } = require("discord.js");
 module.exports = {
     createRoomEmbed: new EmbedBuilder()
         .setColor(0x2D7D46)
-        .setTitle('Create room')
-        .setDescription('Click button below to create a private rooms section on our server!')
+        .setTitle('Tworzenie strefy')
+        .setDescription('Kliknij guzik poniżej, aby stworzyć prywatną strefę!')
         .setFooter({ text: '• Backrooms'})
         .setTimestamp(),
     configureRoomEmbed: new EmbedBuilder()
         .setColor(0x0066FF)
-        .setTitle('Configuration')
-        .setDescription('Here you can change configuration for your room\n\n> **/add <user>** - will add someone to your section\n> **/remove <user>** - will remove someone from your section\n> **/list** - list of users who have access to your section')
+        .setTitle('Konfiguracja')
+        .setDescription('Tutaj możesz zmienić konfigurację dla twojej strefy\n\n> **/add <user>** - dodawanie użytkownika do strefy\n> **/remove <user>** - usunięcie użytkownika z strefy\n> **/list** - lista osób, które mają dostęp do strefy')
         .setFooter({ text: '• Backrooms'})
         .setTimestamp()
 }
