@@ -8,7 +8,7 @@ module.exports = {
 					.setCustomId('template')
 					.setPlaceholder('Wybierz szablon')
 					.addOptions(
-                        ...returnTemplates.map(t => {
+                        ...returnTemplates().map(t => {
                             return {
                                 label: t,
                                 description: 'Wybierz szablon',
