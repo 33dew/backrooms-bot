@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js')
+const { getRoom } = require('../../db/controllers/roomController')
 const { isUserHasRoom, isUserInRoom, removeUser } = require('../../db/roomHandler')
 
 module.exports = {
