@@ -1,4 +1,4 @@
-const {registerRoom, getRoom, updateRoom} = require('./controllers/roomController');
+const {registerRoom, getRoom, updateRoom, archiveRoom} = require('./controllers/roomController');
 const Room = require('./models/room');
 
 module.exports = {
@@ -11,6 +11,9 @@ module.exports = {
                 category: categoryID
             }
         ));
+    },
+    archiveRoom: (ownerID) => {
+        archiveRoom(ownerID)
     },
     getRoom: async (ownerID) => {
         const r = await getRoom(ownerID);
