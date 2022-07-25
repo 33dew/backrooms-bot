@@ -72,9 +72,7 @@ module.exports = {
                 if (err) {
                     reject(err);
                 }
-                if (room) {
-                    resolve(room);
-                }
+                resolve(room);
             });
         });
     }
