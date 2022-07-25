@@ -5,7 +5,7 @@ const { configureRoomEmbed } = require('../../utils/embeds')
 
 module.exports = {
     async execute(interaction) {
-        let ActiveRoomCount = await howManyRoomsActiveRoom();
+        let ActiveRoomCount = await howManyRoomsActiveRoom(interaction.channel.id);
         if(ActiveRoomCount >= 3) return interaction.reply({
             content: 'Posiadasz już 3 aktywne pokoje!',
             ephemeral: true
