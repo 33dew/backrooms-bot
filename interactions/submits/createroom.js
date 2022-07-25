@@ -32,8 +32,7 @@ module.exports = {
                 },
                 {
                     id: interaction.user.id,
-                    allow: [PermissionFlagsBits.ViewChannel],
-                    deny: [PermissionFlagsBits.SendMessages]
+                    allow: [PermissionFlagsBits.ViewChannel]
                 },
             ]
         })
