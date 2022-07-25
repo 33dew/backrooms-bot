@@ -14,7 +14,7 @@ module.exports = {
         const category = await interaction.guild.channels.create({
             name: template.category_name,
             type: ChannelType.GuildCategory,
-            position: 1,
+            position: -1,
             permissionOverwrites: [
                 {
                     id: interaction.user.id,

@@ -26,27 +26,27 @@ module.exports = {
     archiveRoom: async (configID, serverID) => {
         const room = await getRoom(configID, serverID);
         room.isArchived = true;
-        updateRoom(configID, room);
+        updateRoom(configID, room, serverID);
     },
     configureRoom: async (configID, serverID) => {
         const room = await getRoom(configID, serverID);
         room.settings.isConfigured = true;
-        updateRoom(configID, room);
+        updateRoom(configID, room, serverID);
     },
     addChannel: async (configID, channelID, serverID) => {
         const room = await getRoom(configID, serverID);
         room.chats.push(channelID);
-        updateRoom(configID, room);
+        updateRoom(configID, room, serverID);
     },
     addUser: async (configID, userID, serverID) => {
         const room = await getRoom(configID, serverID);
         room.users.push(userID);
-        updateRoom(configID, room);
+        updateRoom(configID, room, serverID);
     },
     removeUser: async (configID, userID, serverID) => {
         const room = await getRoom(configID, serverID);
         room.users = room.users.filter(user => user !== userID);
-        updateRoom(configID, room);
+        updateRoom(configID, room, serverID);
     },
     howManyRoomsActiveRoom: async (ownerID, serverID) => {
         const rooms = await getRooms(ownerID, serverID);
