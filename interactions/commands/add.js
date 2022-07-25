@@ -11,6 +11,7 @@ module.exports = {
             .setRequired(true)
         ),
     async execute(interaction) {
+        console.log(isConfigChannel(interaction.channel.id))
         if (!isConfigChannel(interaction.channel.id)) {
             interaction.reply("Nie możesz użyć tej komendy w tym pokoju")
             return

@@ -69,6 +69,7 @@ module.exports = {
     isRoomConfigChannel(channelID) {
         return new Promise((resolve, reject) => {
             Room.findOne({ "chats.0": channelID }, (err, room) => {
+                console.log(room, err);
                 if (err) {
                     reject(err);
                 }

@@ -23,6 +23,7 @@ module.exports = {
         deleteRoom(configID);
     },
     isConfigChannel: (chatID) => {
+        console.log(isRoomConfigChannel(chatID));
         return isRoomConfigChannel(chatID) ? true : false;
     },
     archiveRoom: async (configID) => {
