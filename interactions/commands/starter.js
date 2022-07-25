@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js')
+const { SlashCommandBuilder, PermissionFlagsBits, ChannelType } = require('discord.js')
 const { returnStartTemplate } = require('../../local/template')
 const { createRoomEmbed } = require('../../utils/embeds')
 const { createRoomComponent } = require('../../utils/components')
