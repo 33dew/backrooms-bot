@@ -73,9 +73,8 @@ module.exports = {
                     reject(err);
                 }
                 if (room) {
-                    resolve(true);
+                    resolve(room);
                 }
-                resolve(false);
             });
         });
     }
