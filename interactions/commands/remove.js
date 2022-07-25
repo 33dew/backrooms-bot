@@ -11,7 +11,7 @@ module.exports = {
             .setRequired(true)
         ),
     async execute(interaction) {
-        let _isConfigChannel = await isConfigChannel(interaction.message.channel.id);
+        let _isConfigChannel = await isConfigChannel(interaction.channel.id);
         if (!_isConfigChannel) {
             interaction.reply("Nie możesz użyć tej komendy w tym pokoju")
             return
