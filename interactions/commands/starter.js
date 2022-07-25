@@ -11,7 +11,7 @@ module.exports = {
     async execute(interaction) {
         const template = await returnStartTemplate();
         
-        const category = await guild.channels.create({
+        const category = await interaction.guild.channels.create({
             name: template.category_name,
             type: ChannelType.GuildCategory,
             permissionOverwrites: [
@@ -21,7 +21,7 @@ module.exports = {
                 }]
         })
         const role = interaction.guild.roles.cache.find(r => r.name === "@everyone");
-        const c1 = await guild.channels.create({
+        const c1 = await interaction.guild.channels.create({
             name: template.text_chats[0]._name,
             type: ChannelType.GuildText,
             parent: category,
@@ -33,7 +33,7 @@ module.exports = {
             ]
         })
         
-        const c2 = await guild.channels.create({
+        const c2 = await interaction.guild.channels.create({
             name: template.text_chats[1]._name,
             type: ChannelType.GuildText,
             parent: category,
