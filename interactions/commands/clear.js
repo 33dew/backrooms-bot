@@ -20,10 +20,9 @@ module.exports = {
                 ephemeral: true
             })
         }
-        const test = await interaction.channel.bulkDelete(interaction.options.getInteger("ilość"))
-        console.log(test)
+        const res = await interaction.channel.bulkDelete(interaction.options.getInteger("ilość"))
         interaction.reply({
-            content: `Usunięto ${interaction.options.getInteger("ilość")} wiadomości`,
+            content: `Usunięto ${res.size} wiadomości`,
             ephemeral: true
         });
     }
