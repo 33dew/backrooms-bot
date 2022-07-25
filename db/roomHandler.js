@@ -22,9 +22,8 @@ module.exports = {
     removeRoom: (configID) => {
         deleteRoom(configID);
     },
-    isConfigChannel: (chatID) => {
-        console.log(isRoomConfigChannel(chatID));
-        return isRoomConfigChannel(chatID) ? true : false;
+    isConfigChannel: async (chatID) => {
+        return await isRoomConfigChannel(chatID) ? true : false;
     },
     archiveRoom: async (configID) => {
         const room = await getRoom(configID);
