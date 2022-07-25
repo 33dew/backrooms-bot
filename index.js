@@ -74,7 +74,7 @@ client.on('interactionCreate', async interaction => {
               },
           ]
         })
-        addChannel(interaction.channel.id, [c.id])
+        addChannel(interaction.channel.id, c.id)
       })
 
       
@@ -96,7 +96,7 @@ client.on('interactionCreate', async interaction => {
               },
           ]
         })
-        addChannel(interaction.channel.id, [c.id])
+        addChannel(interaction.channel.id, c.id)
       })
       await interaction.channel.bulkDelete(99)
       interaction.channel.send({
