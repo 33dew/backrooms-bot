@@ -4,7 +4,7 @@ const Room = require('./models/room');
 
 module.exports = {
     makeRoom: (name, ownerID, chatsIDs, categoryID) => {
-        registerRoom(new Room(
+        createRoom(new Room(
             {
                 name: name,  
                 owner: ownerID, 
