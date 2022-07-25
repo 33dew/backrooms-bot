@@ -3,13 +3,11 @@
     "text_chats": [
         {
             "_name": "how-to-use",
-            "content": "╭━━━━━Backrooms━━━━━╯\nInstrukcja obsługi\n 1. Aby stworzyć pokój musisz przejść do sekcji #stwórz\n 2. Pojedyncza osoba może mieć maksymalnie 3 aktywne pokoje\n 3. W pokoju w zakładce konfiguracja, znajdziecie komendy do zarządzania pokojem i wczytywaniem szablonów pokoi\n",
-            "command": ""
+            "content": "╭━━━━━Backrooms━━━━━╯\nInstrukcja obsługi\n 1. Aby stworzyć pokój musisz przejść do sekcji {stworz}\n 2. Pojedyncza osoba może mieć maksymalnie 3 aktywne pokoje\n 3. W pokoju w zakładce konfiguracja, znajdziecie komendy do zarządzania pokojem i wczytywaniem szablonów pokoi\n"
         },
         {
             "_name": "stwórz",
-            "content": "",
-            "command": "/embed"
+            "content": ""
         }
     ]
 }
