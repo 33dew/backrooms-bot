@@ -2,8 +2,8 @@ const { collectRoom, archiveRoom } = require('../../db/roomHandler')
 const { deleteChannelsComponent } = require('../../utils/components')
 module.exports = {
     async execute(interaction) {
-        const room = await collectRoom(interaction.channel.id)
-        archiveRoom(`${interaction.channel.id}`)
+        const room = await collectRoom(interaction.channel.id, interaction.guild.id)
+        archiveRoom(`${interaction.channel.id}`, interaction.guild.id)
         const channel = await interaction.guild.channels.cache.get(room.category)
         channel.permissionOverwrites.edit(interaction.user, { ViewChannel: false })
         room.chats.forEach(async e => {

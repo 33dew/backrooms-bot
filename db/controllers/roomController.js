@@ -14,9 +14,9 @@ module.exports = {
             });
         });
     },
-    getRoom (configID) {
+    getRoom (configID, serverID) {
         return new Promise((resolve, reject) => {
-            Room.findOne({ "chats.0": configID }, (err, room) => {
+            Room.findOne({ "chats.0": configID, server: serverID }, (err, room) => {
                 if (err) {
                     reject(err);
                 } 
@@ -27,9 +27,9 @@ module.exports = {
             });
         });
     },
-    getRooms (ownerID) {
+    getRooms (ownerID, serverID) {
         return new Promise((resolve, reject) => {
-            Room.find({ owner: ownerID }, (err, rooms) => {
+            Room.find({ owner: ownerID, server: serverID }, (err, rooms) => {
                 if (err) {
                     reject(err);
                 }
@@ -40,9 +40,9 @@ module.exports = {
             });
         });
     },
-    updateRoom (configID, room) {
+    updateRoom (configID, room, serverID) {
         return new Promise((resolve, reject) => {
-            Room.findOneAndUpdate({ "chats.0": configID }, room, { new: true }, (err, room) => {
+            Room.findOneAndUpdate({ "chats.0": configID, server: serverID }, room, { new: true }, (err, room) => {
                 if (err) {
                     reject(err);
                 } 
@@ -53,9 +53,9 @@ module.exports = {
             });
         });
     },
-    deleteRoom (configID) {
+    deleteRoom (configID, serverID) {
         return new Promise((resolve, reject) => {
-            Room.findOneAndRemove({ "chats.0": configID }, (err, room) => {
+            Room.findOneAndRemove({ "chats.0": configID, server: serverID }, (err, room) => {
                 if (err) {
                     reject(err);
                 } 
@@ -66,9 +66,9 @@ module.exports = {
             });
         });
     },
-    isRoomConfigChannel(channelID) {
+    isRoomConfigChannel(channelID, serverID) {
         return new Promise((resolve, reject) => {
-            Room.findOne({ "chats.0": channelID }, (err, room) => {
+            Room.findOne({ "chats.0": channelID, server: serverID }, (err, room) => {
                 if (err) {
                     reject(err);
                 }
@@ -76,9 +76,9 @@ module.exports = {
             });
         });
     },
-    isUserOwner(userID, channelID) {
+    isUserOwner(userID, channelID, serverID) {
         return new Promise((resolve, reject) => {
-            Room.findOne({ chats: { "$all": [channelID] }, owner: userID }, (err, room) => {
+            Room.findOne({ chats: { "$all": [channelID] }, owner: userID, server: serverID }, (err, room) => {
                 if (err) {
                     reject(err);
                 }

@@ -12,9 +12,40 @@
         ]
     },
     {
+        "_name": "Towarzyskie",
+        "text_chats": [
+            "ogólny",
+            "memy",
+            "bez-mikra"
+        ],
+        "voice_chats": [
+            {
+                "name": "głosowy",
+                "size": 0
+            },
+            {
+                "name": "ogladanie",
+                "size": 0
+            },
+            {
+                "name": "granie 1",
+                "size": 5
+            },
+            {
+                "name": "granie 2",
+                "size": 10
+            },
+            {
+                "name": "granie 3",
+                "size": 15
+            }
+        ]
+    },
+    {
         "_name": "LoL",
         "text_chats": [
-            "ogólny"
+            "ogólny",
+            "openings"
         ],
         "voice_chats": [
             {
@@ -39,8 +70,7 @@
         "_name": "Minecraft",
         "text_chats": [
             "ogólny",
-            "paczki",
-            "komendy"
+            "paczki"
         ],
         "voice_chats": [
             {
@@ -67,36 +97,10 @@
             {
                 "name": "głosowy",
                 "size": 0
-            }
-        ]
-    },
-    {
-        "_name": "Towarzyskie",
-        "text_chats": [
-            "ogólny",
-            "memy",
-            "bez-mikra"
-        ],
-        "voice_chats": [
-            {
-                "name": "głosowy",
-                "size": 0
             },
             {
-                "name": "ogladanie",
-                "size": 0
-            },
-            {
-                "name": "granie 1",
-                "size": 5
-            },
-            {
-                "name": "granie 2",
-                "size": 5
-            },
-            {
-                "name": "granie 3",
-                "size": 10
+                "name": "strefa ciszy",
+                "size": 1
             }
         ]
     }

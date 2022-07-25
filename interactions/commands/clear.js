@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js')
-const { addUser, isUserInRoom, isConfigChannel, collectRoom, isUserOwner } = require('../../db/roomHandler')
+const { isConfigChannel, isUserOwner } = require('../../db/roomHandler')
 
 module.exports = {
     data:  new SlashCommandBuilder()
@@ -13,14 +13,14 @@ module.exports = {
             .setRequired(true)
         ),
     async execute(interaction) {
-        let _isConfigChannel = await isConfigChannel(interaction.channel.id);
+        let _isConfigChannel = await isConfigChannel(interaction.channel.id, interaction.guild.id);
         if (_isConfigChannel) {
             return interaction.reply({
                 content: "Nie możesz użyć tej komendy w kanale, który jest konfiguracyjnym",
                 ephemeral: true
             })
         }
-        let _isUserOwner = await isUserOwner(interaction.user.id ,interaction.channel.id);
+        let _isUserOwner = await isUserOwner(interaction.user.id ,interaction.channel.id, interaction.guild.id);
         if (!_isUserOwner) {
             return interaction.reply({
                 content: "Nie jesteś właścicielem pokoju",

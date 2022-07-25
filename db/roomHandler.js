@@ -3,63 +3,64 @@ const Room = require('./models/room');
 
 
 module.exports = {
-    makeRoom: (name, ownerID, chatsIDs, categoryID) => {
+    makeRoom: (name, ownerID, chatsIDs, categoryID, serverID) => {
         createRoom(new Room(
             {
                 name: name,  
                 owner: ownerID, 
                 chats: chatsIDs,
-                category: categoryID
+                category: categoryID,
+                server: serverID
             }
         ));
     },
-    collectRoom: (configID) => {
-        return getRoom(configID) ? getRoom(configID) : null;
+    collectRoom: (configID, serverID) => {
+        return getRoom(configID) ? getRoom(configID, serverID) : null;
     },
-    removeRoom: (configID) => {
-        deleteRoom(configID);
+    removeRoom: (configID, serverID) => {
+        deleteRoom(configID, serverID);
     },
-    isConfigChannel: async (chatID) => {
-        return await isRoomConfigChannel(chatID) ? true : false;
+    isConfigChannel: async (chatID, serverID) => {
+        return await isRoomConfigChannel(chatID, serverID) ? true : false;
     },
-    archiveRoom: async (configID) => {
-        const room = await getRoom(configID);
+    archiveRoom: async (configID, serverID) => {
+        const room = await getRoom(configID, serverID);
         room.isArchived = true;
         updateRoom(configID, room);
     },
-    configureRoom: async (configID) => {
-        const room = await getRoom(configID);
+    configureRoom: async (configID, serverID) => {
+        const room = await getRoom(configID, serverID);
         room.settings.isConfigured = true;
         updateRoom(configID, room);
     },
-    addChannel: async (configID, channelID) => {
-        const room = await getRoom(configID);
+    addChannel: async (configID, channelID, serverID) => {
+        const room = await getRoom(configID, serverID);
         room.chats.push(channelID);
         updateRoom(configID, room);
     },
-    addUser: async (configID, userID) => {
-        const room = await getRoom(configID);
+    addUser: async (configID, userID, serverID) => {
+        const room = await getRoom(configID, serverID);
         room.users.push(userID);
         updateRoom(configID, room);
     },
-    removeUser: async (configID, userID) => {
-        const room = await getRoom(configID);
+    removeUser: async (configID, userID, serverID) => {
+        const room = await getRoom(configID, serverID);
         room.users = room.users.filter(user => user !== userID);
         updateRoom(configID, room);
     },
-    howManyRoomsActiveRoom: async (ownerID) => {
-        const rooms = await getRooms(ownerID);
+    howManyRoomsActiveRoom: async (ownerID, serverID) => {
+        const rooms = await getRooms(ownerID, serverID);
         return rooms.filter(room => room.settings.isArchived === false).length;
     },
-    isUserInRoom: async (configID, userID) => {
-        const room = await getRoom(configID);
+    isUserInRoom: async (configID, userID, serverID) => {
+        const room = await getRoom(configID, serverID);
         return room.users.includes(userID);
     },
-    isUserOwner: async (userID, channelID) => {
-        return await isUserOwner(userID, channelID) ? true : false;
+    isUserOwner: async (userID, channelID, serverID) => {
+        return await isUserOwner(userID, channelID, serverID) ? true : false;
     },
-    collectCategory: async (configID) => {
-        const room = await getRoom(configID);
+    collectCategory: async (configID, serverID) => {
+        const room = await getRoom(configID, serverID);
         return room.category ? room.category : null;
     }
 }

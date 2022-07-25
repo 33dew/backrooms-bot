@@ -26,6 +26,10 @@ const RoomSchema = new Schema({
         required: true,
         minlength: 1,
     },
+    server: {
+        type: String,
+        required: true,
+    },
     settings: { // settings is the chat's additional settings
         type: Object,
         required: true,
