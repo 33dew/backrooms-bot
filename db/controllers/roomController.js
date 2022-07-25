@@ -29,7 +29,7 @@ module.exports = {
     },
     getRooms (ownerID) {
         return new Promise((resolve, reject) => {
-            Room.find({ "owner": ownerID }, (err, rooms) => {
+            Room.find({ owner: ownerID }, (err, rooms) => {
                 if (err) {
                     reject(err);
                 }
