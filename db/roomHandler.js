@@ -37,7 +37,7 @@ module.exports = {
     },
     addChannel: async (configID, channelID) => {
         const room = await getRoom(configID);
-        room.channels.push(channelID);
+        room.chats.push(channelID);
         updateRoom(room);
     },
     addUser: async (configID, userID) => {
