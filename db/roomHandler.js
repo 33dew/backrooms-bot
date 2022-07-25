@@ -15,7 +15,7 @@ module.exports = {
         ));
     },
     collectRoom: (configID, serverID) => {
-        return getRoom(configID) ? getRoom(configID, serverID) : null;
+        return getRoom(configID, serverID) ? getRoom(configID, serverID) : null;
     },
     removeRoom: (configID, serverID) => {
         deleteRoom(configID, serverID);

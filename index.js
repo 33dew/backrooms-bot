@@ -55,7 +55,7 @@ client.on('interactionCreate', async interaction => {
     }
   } else if(interaction.isSelectMenu()){
     if(interaction.customId === "template"){
-      const categoryID = await collectCategory(interaction.channel.id);
+      const categoryID = await collectCategory(interaction.channel.id, interaction.guild.id);
       const template = await returnTemplate(interaction.values[0])
       const categoryChannel = interaction.guild.channels.cache.get(categoryID)
       await template[0].text_chats.forEach(async e => {
@@ -103,7 +103,7 @@ client.on('interactionCreate', async interaction => {
         embeds: [configureRoomEmbed],
         components: [configureRoomComponent]
       })
-      configureRoom(interaction.channel.id)
+      configureRoom(interaction.channel.id, interaction.guild.id)
     }
   }
 });
