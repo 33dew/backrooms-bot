@@ -13,8 +13,10 @@ module.exports = {
     async execute(interaction) {
         let _isConfigChannel = await isConfigChannel(interaction.channel.id);
         if (!_isConfigChannel) {
-            interaction.reply("Nie możesz użyć tej komendy w tym pokoju")
-            return
+            return interaction.reply({
+                content: "Nie możesz użyć tej komendy w tym pokoju",
+                ephemeral: true
+            })
         }
         let isUserIn = await isUserInRoom(interaction.channel.id, interaction.options.getMember("user").id)
         if(!isUserIn) return interaction.reply({

@@ -8,8 +8,10 @@ module.exports = {
     async execute(interaction) {
         let _isConfigChannel = await isConfigChannel(interaction.channel.id);
         if (!_isConfigChannel) {
-            interaction.reply("Nie możesz użyć tej komendy w tym pokoju")
-            return
+            return interaction.reply({
+                content: "Nie możesz użyć tej komendy w tym pokoju",
+                ephemeral: true
+            })
         }
         const room = await collectRoom(interaction.channel.id)
         const users = room.users.map(user => `> <@${user}>`)

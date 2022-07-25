@@ -16,9 +16,6 @@ module.exports = {
     collectRoom: (configID) => {
         return getRoom(configID) ? getRoom(configID) : null;
     },
-    changeRoom: (configID) => {
-        updateRoom(configID);
-    },
     removeRoom: (configID) => {
         deleteRoom(configID);
     },
@@ -28,27 +25,27 @@ module.exports = {
     archiveRoom: async (configID) => {
         const room = await getRoom(configID);
         room.archived = true;
-        updateRoom(room);
+        updateRoom(configID, room);
     },
     configureRoom: async (configID) => {
         const room = await getRoom(configID);
         room.settings.configured = true;
-        updateRoom(room);
+        updateRoom(configID, room);
     },
     addChannel: async (configID, channelID) => {
         const room = await getRoom(configID);
         room.chats.push(channelID);
-        updateRoom(room);
+        updateRoom(configID, room);
     },
     addUser: async (configID, userID) => {
         const room = await getRoom(configID);
         room.users.push(userID);
-        updateRoom(room);
+        updateRoom(configID, room);
     },
     removeUser: async (configID, userID) => {
         const room = await getRoom(configID);
         room.users = room.users.filter(user => user !== userID);
-        updateRoom(room);
+        updateRoom(configID, room);
     },
     howManyRoomsActiveRoom: async (ownerID) => {
         const rooms = await getRooms(ownerID);
