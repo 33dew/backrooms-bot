@@ -24,12 +24,12 @@ module.exports = {
     },
     archiveRoom: async (configID) => {
         const room = await getRoom(configID);
-        room.archived = true;
+        room.isArchived = true;
         updateRoom(configID, room);
     },
     configureRoom: async (configID) => {
         const room = await getRoom(configID);
-        room.settings.configured = true;
+        room.settings.isConfigured = true;
         updateRoom(configID, room);
     },
     addChannel: async (configID, channelID) => {
@@ -49,7 +49,7 @@ module.exports = {
     },
     howManyRoomsActiveRoom: async (ownerID) => {
         const rooms = await getRooms(ownerID);
-        return rooms.filter(room => room.settings.achived === false).length;
+        return rooms.filter(room => room.settings.isArchived === false).length;
     },
     isUserInRoom: async (configID, userID) => {
         const room = await getRoom(configID);
