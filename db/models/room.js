@@ -32,9 +32,6 @@ const RoomSchema = new Schema({
         default: {
             isConfigured: false,
             isArchived: false,
-            usersCount: 1,
-            chatsCount: 1, // 1 for options (for owner), 2 for general, 3 for voice
-            options: []
         }
     }
 }, { timestamps: true }); // timestamps is a plugin that adds createdAt and updatedAt fields to the schema

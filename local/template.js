@@ -8,3 +8,4 @@ module.exports = {
     returnTemplate: name => template.filter(t => t._name == name),
     returnTemplates: () => template.map(t => t._name)
 }
+

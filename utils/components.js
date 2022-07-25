@@ -28,4 +28,11 @@ module.exports = {
                         .setLabel('Usuń strefę!')
                         .setStyle(ButtonStyle.Danger),
                 ),
+    deleteChannelsComponent: new ActionRowBuilder()
+                .addComponents(
+                    new ButtonBuilder()
+                        .setCustomId('deletechannels')
+                        .setLabel('Usuń wszystkie pokoje!')
+                        .setStyle(ButtonStyle.Danger),
+                ),
 }

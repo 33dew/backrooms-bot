@@ -1,8 +1,9 @@
-const { getRoom, archiveRoom } = require('../../db/roomHandler')
+const { collectRoom, archiveRoom } = require('../../db/roomHandler')
+const { deleteChannelsComponent } = require('../../utils/components')
 module.exports = {
     async execute(interaction) {
-        const room = await getRoom(interaction.user.id)
-        archiveRoom(`${interaction.user.id}`)
+        const room = await collectRoom(interaction.channel.id)
+        archiveRoom(`${interaction.channel.id}`)
         const channel = await interaction.guild.channels.cache.get(room.category)
         channel.permissionOverwrites.edit(interaction.user, { ViewChannel: false })
         room.chats.forEach(async e => {
@@ -19,6 +20,9 @@ module.exports = {
         })
         interaction.reply({
             content: "Section archived"
+        })
+        interaction.channel.send({
+            components: [deleteChannelsComponent]
         })
     }
 }

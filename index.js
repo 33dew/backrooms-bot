@@ -1,9 +1,8 @@
 require('dotenv').config();
 const { Client, GatewayIntentBits, Collection, InteractionType, ChannelType, PermissionFlagsBits } = require('discord.js');
-const { getCategory } = require('./db/roomHandler')
+const { collectCategory, addChannel, configureRoom } = require('./db/roomHandler')
 const { returnTemplate } = require('./local/template')
 const fs = require('fs');
-const { addChannel, configureRoom } = require('./db/roomHandler')
 const { configureRoomComponent } = require('./utils/components')
 const { configureRoomEmbed } = require('./utils/embeds')
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages] });
@@ -56,7 +55,7 @@ client.on('interactionCreate', async interaction => {
     }
   } else if(interaction.isSelectMenu()){
     if(interaction.customId === "template"){
-      const categoryID = await getCategory(interaction.user.id, interaction.channel.id)
+      const categoryID = await collectCategory(interaction.channel.id);
       const template = await returnTemplate(interaction.values[0])
       const categoryChannel = interaction.guild.channels.cache.get(categoryID)
       await template[0].text_chats.forEach(async e => {
@@ -75,8 +74,11 @@ client.on('interactionCreate', async interaction => {
               },
           ]
         })
-        addChannel(interaction.user.id, [c.id])
+        addChannel(interaction.channel.id, [c.id])
       })
+
+      
+
       await template[0].voice_chats.forEach(async e => {
         const c = await interaction.guild.channels.create({
           name: e.name,
@@ -94,14 +96,14 @@ client.on('interactionCreate', async interaction => {
               },
           ]
         })
-        addChannel(interaction.user.id, [c.id])
+        addChannel(interaction.channel.id, [c.id])
       })
       await interaction.channel.bulkDelete(99)
       interaction.channel.send({
         embeds: [configureRoomEmbed],
         components: [configureRoomComponent]
       })
-      configureRoom(interaction.user.id)
+      configureRoom(interaction.channel.id)
     }
   }
 });

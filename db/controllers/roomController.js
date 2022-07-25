@@ -1,90 +1,81 @@
 const Room = require('../models/room')
 module.exports = {
-    registerRoom (room) {
+    // CRUD
+    createRoom (room) {
         return new Promise((resolve, reject) => {
             Room.create(room, (err, room) => {
                 if (err) {
                     reject(err);
-                } else {
-                    resolve(room);
+                } 
+                if (room) {
+                    resolve(true);
                 }
+                resolve(false);
             });
         });
     },
-    getRoom (ownerID) {
+    getRoom (configID) {
         return new Promise((resolve, reject) => {
-            Room.findOne({ owner: ownerID, "settings.isArchived": false }, (err, room) => {
+            Room.findOne({ "chats.0": configID }, (err, room) => {
                 if (err) {
                     reject(err);
-                } else {
+                } 
+                if (room) {
                     resolve(room);
                 }
+                resolve(null);
             });
         });
     },
-    updateRoom (ownerID, room) {
+    getRooms (ownerID) {
         return new Promise((resolve, reject) => {
-            Room.findOneAndUpdate({ owner: ownerID, "settings.isArchived": false }, room, (err, room) => {
+            Room.find({ "owner": ownerID }, (err, rooms) => {
                 if (err) {
                     reject(err);
-                } else {
-                    resolve(room);
                 }
+                if (rooms) {
+                    resolve(rooms);
+                }
+                resolve(null);
             });
         });
     },
-    archiveRoom(ownerID) {
+    updateRoom (configID, room) {
         return new Promise((resolve, reject) => {
-            Room.updateOne({ owner: ownerID, "settings.isArchived": false }, { "settings.isArchived": true }, (err, room) => {
+            Room.findOneAndUpdate({ "chats.0": configID }, room, { new: true }, (err, room) => {
                 if (err) {
                     reject(err);
-                } else {
-                    resolve(room);
+                } 
+                if (room) {
+                    resolve(true);
                 }
+                resolve(false);
             });
         });
     },
-    configureRoom(ownerID) {
+    deleteRoom (configID) {
         return new Promise((resolve, reject) => {
-            Room.updateOne({ owner: ownerID, "settings.isArchived": false }, { "settings.isConfigured": true }, (err, room) => {
+            Room.findOneAndRemove({ "chats.0": configID }, (err, room) => {
                 if (err) {
                     reject(err);
-                } else {
-                    resolve(room);
+                } 
+                if (room) {
+                    resolve(true);
                 }
+                resolve(false);
             });
         });
     },
-    addUser(ownerID, users) {
+    isRoomConfigChannel(channelID) {
         return new Promise((resolve, reject) => {
-            Room.updateOne({ owner: ownerID, "settings.isArchived": false }, { users }, (err, room) => {
+            Room.findOne({ "chats.0": channelID }, (err, room) => {
                 if (err) {
                     reject(err);
-                } else {
-                    resolve(room);
                 }
-            });
-        });
-    },
-    addChannel(ownerID, chats) {
-        return new Promise((resolve, reject) => {
-            Room.updateOne({ owner: ownerID, "settings.isArchived": false }, { chats }, (err, room) => {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(room);
+                if (room) {
+                    resolve(true);
                 }
-            });
-        });
-    },
-    removeUser(ownerID, users) {
-        return new Promise((resolve, reject) => {
-            Room.updateOne({ owner: ownerID, "settings.isArchived": false }, { users }, (err, room) => {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(room);
-                }
+                resolve(false);
             });
         });
     }

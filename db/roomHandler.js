@@ -1,8 +1,9 @@
-const {registerRoom, getRoom, updateRoom, archiveRoom, addUser, removeUser, addChannel, configureRoom} = require('./controllers/roomController');
+const { createRoom, getRoom, getRooms, updateRoom, deleteRoom, isRoomConfigChannel } = require('./controllers/roomController');
 const Room = require('./models/room');
 
+
 module.exports = {
-    saveRoom: (name, ownerID, chatsIDs, categoryID) => {
+    makeRoom: (name, ownerID, chatsIDs, categoryID) => {
         registerRoom(new Room(
             {
                 name: name,  
@@ -12,76 +13,53 @@ module.exports = {
             }
         ));
     },
-    archiveRoom: (ownerID) => {
-        archiveRoom(ownerID)
+    collectRoom: (configID) => {
+        return getRoom(configID) ? getRoom(configID) : null;
     },
-    configureRoom: (ownerID) => {
-        configureRoom(ownerID)
+    changeRoom: (configID) => {
+        updateRoom(configID);
     },
-    addChannel: async (ownerID, channels) => {
-        const room = await getRoom(ownerID)
-        addChannel(ownerID, [...room.chats, ...channels])
+    removeRoom: (configID) => {
+        deleteRoom(configID);
     },
-    addUser: async (ownerID, userID) => {
-        const room = await getRoom(ownerID)
-        addUser(ownerID, [...room.users, userID])
+    isConfigChannel: (chatID) => {
+        return isRoomConfigChannel(chatID);
     },
-    removeUser: async (ownerID, userID) => {
-        const room = await getRoom(ownerID)
-        removeUser(ownerID, room.users.filter(user => user != userID))
+    archiveRoom: async (configID) => {
+        const room = await getRoom(configID);
+        room.archived = true;
+        updateRoom(room);
     },
-    getRoom: async (ownerID) => {
-        const r = await getRoom(ownerID);
-        const o = {
-            name: r.name,
-            owner: r.owner,
-            users: r.users,
-            chats: r.chats,
-            category: r.category,
-            settings: r.settings
-        };
-        return o;
+    configureRoom: async (configID) => {
+        const room = await getRoom(configID);
+        room.settings.configured = true;
+        updateRoom(room);
     },
-    updateRoom: (ownerID, room_data) => {
-        const r = new Room({
-            name: room_data.name,
-            owner: room_data.owner,
-            users: room_data.users,
-            chats: room_data.chats,
-            category: room_data.category,
-            settings: room_data.settings
-        });
-
-        updateRoom(ownerID, r);
+    addChannel: async (configID, channelID) => {
+        const room = await getRoom(configID);
+        room.channels.push(channelID);
+        updateRoom(room);
     },
-    isUserHasRoom: async (userID) => {
-        try {
-            const room = await Room.findOne({owner: `${userID}`, 'settings.isArchived': false });
-            if(room) return true;
-        }   
-        catch (err) {
-            console.log(err);
-        }
-        return false;
+    addUser: async (configID, userID) => {
+        const room = await getRoom(configID);
+        room.users.push(userID);
+        updateRoom(room);
     },
-    isUserInRoom: async (ownerID, userID) => {
-        try {
-            const room = await Room.findOne({owner: `${ownerID}`, "settings.isArchived": false, users: {$all: [`${userID}`]} });
-            if(room) return true;
-        }   
-        catch (err) {
-            console.log(err);
-        }
-        return false;
+    removeUser: async (configID, userID) => {
+        const room = await getRoom(configID);
+        room.users = room.users.filter(user => user !== userID);
+        updateRoom(room);
     },
-    getCategory: async (ownerID, channelID) => {
-        try {
-            const room = await Room.findOne({owner: `${ownerID}`, "settings.isArchived": false, chats: {$all: [`${channelID}`]} });
-            if(room) return room.category;
-        }   
-        catch (err) {
-            console.log(err);
-        }
-        return null;
+    howManyRoomsActiveRoom: async (ownerID) => {
+        const rooms = await getRooms(ownerID);
+        return rooms.filter(room => room.settings.achived === false).length;
+    },
+    isUserInRoom: async (configID, userID) => {
+        const room = await getRoom(configID);
+        return room.users.includes(userID);
+    },
+    collectCategory: async (configID) => {
+        const room = await getRoom(configID);
+        return room.category ? room.category : null;
     }
 }
