@@ -1,4 +1,4 @@
-const { collectRoom } = require('../../db/roomHandler')
+const { collectRoom, removeRoom } = require('../../db/roomHandler')
 module.exports = {
     async execute(interaction) {
         interaction.reply({
@@ -11,6 +11,6 @@ module.exports = {
         })
         const category = await interaction.guild.channels.cache.get(room.category)
         category.delete()
-        
+        removeRoom(interaction.channel.id)
     }
 }
