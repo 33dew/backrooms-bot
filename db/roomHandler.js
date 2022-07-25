@@ -1,4 +1,4 @@
-const { createRoom, getRoom, getRooms, updateRoom, deleteRoom, isRoomConfigChannel } = require('./controllers/roomController');
+const { createRoom, getRoom, getRooms, updateRoom, deleteRoom, isUserOwner, isRoomConfigChannel } = require('./controllers/roomController');
 const Room = require('./models/room');
 
 
@@ -54,6 +54,9 @@ module.exports = {
     isUserInRoom: async (configID, userID) => {
         const room = await getRoom(configID);
         return room.users.includes(userID);
+    },
+    isUserOwner: async (userID, channelID) => {
+        return await isUserOwner(userID, channelID) ? true : false;
     },
     collectCategory: async (configID) => {
         const room = await getRoom(configID);

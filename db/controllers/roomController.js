@@ -75,5 +75,16 @@ module.exports = {
                 resolve(room);
             });
         });
+    },
+    isUserOwner(userID, channelID) {
+        return new Promise((resolve, reject) => {
+            Room.findOne({ chats: { "$all": [channelID] }, owner: userID }, (err, room) => {
+                if (err) {
+                    reject(err);
+                }
+                resolve(room);
+            });
+        });
     }
+
 }
