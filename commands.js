@@ -13,6 +13,6 @@ for (const file of commandFiles){
 }
 const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
 
-rest.put(Routes.applicationGuildCommands(process.env.S_ONE, process.env.S_TWO), { body: commands })
+rest.put(Routes.applicationCommands(process.env.S_ONE), { body: commands })
 	.then(() => console.log('Successfully registered application commands.'))
 	.catch(console.error);
