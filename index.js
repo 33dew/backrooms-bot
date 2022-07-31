@@ -6,7 +6,7 @@ const fs = require('fs');
 const { configureRoomComponent } = require('./utils/components')
 const { configureRoomEmbed } = require('./utils/embeds')
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages] });
-
+const { changesUpdateLoop } = require('./db/changesHandler');
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
@@ -21,6 +21,7 @@ module.exports.CommandCollection = client.commands
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
   require('./commands.js');
+  changesUpdateLoop();
 });
 
 client.on('interactionCreate', async interaction => {
@@ -118,6 +119,3 @@ client.on('interactionCreate', async interaction => {
 });
 
 client.login(process.env.TOKEN);
-
-const { changesUpdateLoop } = require('./db/changesHandler');
-changesUpdateLoop();
