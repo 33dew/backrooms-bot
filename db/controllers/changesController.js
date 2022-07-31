@@ -2,8 +2,8 @@ const Changes = require('../models/changes');
 
 module.exports = {
     getAndRemoveAllChanges () {
-        return new Promise((resolve, reject) => {
-            Changes.find({}, (err, changes) => {
+        return new Promise(async (resolve, reject) => {
+            await Changes.find({}, (err, changes) => {
                 if (err) {
                     reject(err);
                 }
