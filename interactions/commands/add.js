@@ -32,7 +32,7 @@ module.exports = {
         const channel = await interaction.guild.channels.cache.get(room.category)
         channel.permissionOverwrites.edit(interaction.options.getMember("user"), { ViewChannel: true })
         room.chats.forEach(async (e, i) => {
-            const c = await interaction.guild.channels.cache.get(e.id)
+            const c = await interaction.guild.channels.cache.get(e.channelid)
             c.permissionOverwrites.edit(interaction.options.getMember("user"), { ViewChannel: i > 0 ? true : false })
         })
         interaction.reply({

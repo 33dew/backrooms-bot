@@ -37,7 +37,7 @@ module.exports = {
             ]
         })
         makeRoom(interaction.fields.getTextInputValue('create-room-input'), interaction.user.id, [{
-            id: c1.id,
+            channelid: c1.id,
             name: c1.name,
             type: "text",
             voice_max: 0,

@@ -16,7 +16,7 @@ module.exports = {
     },
     getRoom (configID, serverID) {
         return new Promise((resolve, reject) => {
-            Room.findOne({ "chats.0.id": configID, server: serverID }, (err, room) => {
+            Room.findOne({ "chats.0.channelid": configID, server: serverID }, (err, room) => {
                 if (err) {
                     reject(err);
                 } 
@@ -42,7 +42,7 @@ module.exports = {
     },
     updateRoom (configID, room, serverID) {
         return new Promise((resolve, reject) => {
-            Room.findOneAndUpdate({ "chats.0.id": configID, server: serverID }, room, { new: true }, (err, room) => {
+            Room.findOneAndUpdate({ "chats.0.channelid": configID, server: serverID }, room, { new: true }, (err, room) => {
                 if (err) {
                     reject(err);
                 } 
@@ -55,7 +55,7 @@ module.exports = {
     },
     deleteRoom (configID, serverID) {
         return new Promise((resolve, reject) => {
-            Room.findOneAndRemove({ "chats.0.id": configID, server: serverID }, (err, room) => {
+            Room.findOneAndRemove({ "chats.0.channelid": configID, server: serverID }, (err, room) => {
                 if (err) {
                     reject(err);
                 } 
@@ -68,7 +68,7 @@ module.exports = {
     },
     isRoomConfigChannel(channelID, serverID) {
         return new Promise((resolve, reject) => {
-            Room.findOne({ "chats.0.id": channelID, server: serverID }, (err, room) => {
+            Room.findOne({ "chats.0.channelid": channelID, server: serverID }, (err, room) => {
                 if (err) {
                     reject(err);
                 }
@@ -78,7 +78,7 @@ module.exports = {
     },
     isUserOwner(userID, channelID, serverID) {
         return new Promise((resolve, reject) => {
-            Room.findOne({ chats: { "$all.id": [channelID] }, owner: userID, server: serverID }, (err, room) => {
+            Room.findOne({ chats: { "$all.channelid": [channelID] }, owner: userID, server: serverID }, (err, room) => {
                 if (err) {
                     reject(err);
                 }
