@@ -3,7 +3,7 @@ const Changes = require('../models/changes');
 module.exports = {
     getAndRemoveAllChanges () {
         return new Promise((resolve, reject) => {
-            Changes.find({}).remove((err, changes) => {
+            Changes.find({}, (err, changes) => {
                 if (err) {
                     reject(err);
                 }
@@ -11,6 +11,11 @@ module.exports = {
                     resolve(changes);
                 }
                 resolve(null);
+            });
+            Changes.deleteMany({}, (err) => {
+                if (err) {
+                    reject(err);
+                }
             });
         });
     }
