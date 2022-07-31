@@ -6,7 +6,7 @@ module.exports = {
         })
         const room = await collectRoom(interaction.channel.id, interaction.guild.id)
         room.chats.forEach(async e => {
-            const c = await interaction.guild.channels.cache.get(e)
+            const c = await interaction.guild.channels.cache.get(e.id)
             c.delete()
         })
         const category = await interaction.guild.channels.cache.get(room.category)
