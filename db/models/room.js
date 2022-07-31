@@ -17,7 +17,7 @@ const RoomSchema = new Schema({
         default: [],
     },
     chats: { // chats has an array of chat IDs
-        type: [String],
+        type: [Object],
         required: true,
         minlength: 1,
     },
