@@ -76,7 +76,7 @@ client.on('interactionCreate', async interaction => {
           ]
         })
         addChannel(interaction.channel.id, {
-          id: c.id,
+          channelid: c.id,
           name: c.name,
           type: "text",
           voice_max: 0,
@@ -102,7 +102,7 @@ client.on('interactionCreate', async interaction => {
           ]
         })
         addChannel(interaction.channel.id, {
-          id: c.id,
+          channelid: c.id,
           name: c.name,
           type: "voice",
           voice_max: e.size,
