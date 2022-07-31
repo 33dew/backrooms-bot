@@ -36,7 +36,12 @@ module.exports = {
                 },
             ]
         })
-        makeRoom(interaction.fields.getTextInputValue('create-room-input'), interaction.user.id, [c1.id], category.id, interaction.guild.id)
+        makeRoom(interaction.fields.getTextInputValue('create-room-input'), interaction.user.id, [{
+            id: c1.id,
+            name: c1.name,
+            type: "text",
+            voice_max: 0,
+        }], category.id, interaction.guild.id)
         c1.send({
             embeds: [configureRoomEmbed],
             components: [configureRoomTemplate]

@@ -74,8 +74,12 @@ client.on('interactionCreate', async interaction => {
               },
           ]
         })
-        addChannel(interaction.channel.id, c.id, interaction.guild.id)
-      })
+        addChannel(interaction.channel.id, {
+          id: c.id,
+          name: c.name,
+          type: "text",
+          voice_max: 0,
+        }, interaction.guild.id)})
 
       
 
@@ -96,7 +100,12 @@ client.on('interactionCreate', async interaction => {
               },
           ]
         })
-        addChannel(interaction.channel.id, c.id, interaction.guild.id)
+        addChannel(interaction.channel.id, {
+          id: c.id,
+          name: c.name,
+          type: "voice",
+          voice_max: e.size,
+        }, interaction.guild.id)
       })
       await interaction.channel.bulkDelete(99)
       interaction.channel.send({
