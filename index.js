@@ -21,7 +21,9 @@ module.exports.CommandCollection = client.commands
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
   require('./commands.js');
-  changesUpdateLoop();
+  setInterval(() => {
+    changesUpdateLoop(client)
+  }, 20000);
 });
 
 client.on('interactionCreate', async interaction => {
