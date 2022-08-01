@@ -12,10 +12,8 @@ module.exports = {
             }
           })
         );
-        change.Room.forEach(async (room) => {
-            const categoryChannel = client.channels.cache.get(room.category);
-            console.log(categoryChannel);
-        });
+        const categoryChannel = client.channels.cache.get(change.Room.category);
+        console.log(categoryChannel);
       });
     });
   },
