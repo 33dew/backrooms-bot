@@ -10,6 +10,7 @@ module.exports = {
         console.log(test.chatToRemove);
         console.log(change.Room);
         console.log(change.chatToRemove);
+        console.log(change._doc.chatToRemove);
         console.log(Object.entries(change));
         // await Promise.all(
         //   change.chatToRemove.map(async (chat) => {
