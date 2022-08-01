@@ -3,7 +3,7 @@ const { getAndRemoveAllChanges } = require("./controllers/changesController");
 module.exports = {
   changesUpdateLoop(client) {
     getAndRemoveAllChanges().then((changesList) => {
-    console.log(changesList);
+      console.log(changesList);
       changesList.forEach(async (change) => {
         await Promise.all(
           change._doc.chatToRemove.map(async (chat) => {
@@ -13,7 +13,20 @@ module.exports = {
           })
         );
         const categoryChannel = client.channels.cache.get(change.Room.category);
-        console.log(categoryChannel);
+        if (categoryChannel.name != change.Room.name) {
+          await categoryChannel.setName(change.Room.name);
+        }
+        await Promise.all(
+          change.Room.chats.map(async (chat) => {
+            const channel = client.channels.cache.get(chat.channelid);
+            if (channel != null) {
+              if (channel.name != chat.name) {
+                await channel.setName(chat.name);
+              }
+              console.log(channel)
+            }
+          })
+        );
       });
     });
   },
