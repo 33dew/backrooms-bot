@@ -24,7 +24,7 @@ module.exports = {
                 await channel.setName(chat.name);
               }
               if (channel.type == 2 && channel.userLimit != chat.voice_max) {
-                await channel.setUserLimit(chat.userLimit);
+                await channel.setUserLimit(chat.voice_max);
               }
             }
           })
