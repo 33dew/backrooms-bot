@@ -8,6 +8,7 @@ module.exports = {
         const json = JSON.stringify(change);
         const test = JSON.parse(json);
         console.log(test.chatToRemove);
+        console.log(change.Room);
         console.log(change.chatToRemove);
         // await Promise.all(
         //   change.chatToRemove.map(async (chat) => {
