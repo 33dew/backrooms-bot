@@ -6,84 +6,33 @@
         ],
         "voice_chats": [
             {
-                "name": "głosowy",
+                "name": "Głosowy",
                 "size": 0
             }
         ]
     },
     {
-        "_name": "Towarzyskie",
+        "_name": "Granie",
         "text_chats": [
             "ogólny",
-            "memy",
-            "bez-mikra"
+            "memy"
         ],
         "voice_chats": [
             {
-                "name": "głosowy",
+                "name": "Multiplayer",
                 "size": 0
-            },
-            {
-                "name": "ogladanie",
-                "size": 0
-            },
-            {
-                "name": "granie 1",
-                "size": 5
-            },
-            {
-                "name": "granie 2",
-                "size": 10
-            },
-            {
-                "name": "granie 3",
-                "size": 15
             }
-        ]
-    },
-    {
-        "_name": "LoL",
-        "text_chats": [
-            "ogólny",
-            "openings"
-        ],
-        "voice_chats": [
             {
-                "name": "solo/duo",
+                "name": "PvP",
                 "size": 2
             },
             {
-                "name": "draft/flex",
+                "name": "Team I",
                 "size": 5
             },
             {
-                "name": "TFT",
-                "size": 8
-            },
-            {
-                "name": "custom",
-                "size": 10
-            }
-        ]
-    },
-    {
-        "_name": "Minecraft",
-        "text_chats": [
-            "ogólny",
-            "paczki"
-        ],
-        "voice_chats": [
-            {
-                "name": "głosowy",
-                "size": 0
-            },
-            {
-                "name": "budowanie czas",
-                "size": 0
-            },
-            {
-                "name": "afk-klocki",
-                "size": 0
+                "name": "Team II",
+                "size": 5
             }
         ]
     },
@@ -95,12 +44,34 @@
         ],
         "voice_chats": [
             {
-                "name": "głosowy",
+                "name": "Głosowy I",
                 "size": 0
             },
             {
-                "name": "strefa ciszy",
-                "size": 1
+                "name": "Głosowy II",
+                "size": 0
+            }
+        ]
+    },
+    {
+        "_name": "Wspólne oglądanie",
+        "text_chats": [
+            "ogólny",
+            "dyskusja",
+            "screenshoty"
+        ],
+        "voice_chats": [
+            {
+                "name": "Oglądanie I",
+                "size": 0
+            },
+            {
+                "name": "Oglądanie II",
+                "size": 0
+            },
+            {
+                "name": "Randeczka",
+                "size": 2
             }
         ]
     }
