@@ -5,7 +5,7 @@ module.exports = {
     getAndRemoveAllChanges().then((changesList) => {
     console.log(changesList);
       changesList.forEach(async (change) => {
-        console.log(typeof change);
+        console.log(JSON.stringify(change));
         console.log(change.chatToRemove);
         console.log(change['chatToRemove']);
         // await Promise.all(
