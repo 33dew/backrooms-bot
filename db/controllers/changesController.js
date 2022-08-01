@@ -1,4 +1,5 @@
 const Changes = require('../models/changes');
+const Room = require('../models/room')
 
 module.exports = {
     getAndRemoveAllChanges () {
@@ -16,6 +17,19 @@ module.exports = {
                     resolve(changes);
                 }
                 resolve(null);
+            });
+        });
+    },
+    updateRoom (name, chats, category_id) {
+        return new Promise((resolve, reject) => {
+            Room.findOneAndUpdate({ category: category_id }, { name: name, chats: chats }, { new: true }, (err, room) => {
+                if (err) {
+                    reject(err);
+                } 
+                if (room) {
+                    resolve(true);
+                }
+                resolve(false);
             });
         });
     }

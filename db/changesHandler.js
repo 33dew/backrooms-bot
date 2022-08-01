@@ -1,9 +1,8 @@
-const { getAndRemoveAllChanges } = require("./controllers/changesController");
+const { getAndRemoveAllChanges, updateRoom } = require("./controllers/changesController");
 
 module.exports = {
   changesUpdateLoop(client) {
     getAndRemoveAllChanges().then((changesList) => {
-      console.log(changesList);
       changesList.forEach(async (change) => {
         await Promise.all(
           change._doc.chatToRemove.map(async (chat) => {
@@ -29,6 +28,8 @@ module.exports = {
             }
           })
         );
+
+        await updateRoom(change.Room.name, change.Room.chats, change.Room.category);
       });
     });
   },
