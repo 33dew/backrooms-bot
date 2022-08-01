@@ -23,7 +23,9 @@ module.exports = {
               if (channel.name != chat.name) {
                 await channel.setName(chat.name);
               }
-              console.log(channel)
+              if (channel.type == 2 && channel.userLimit != chat.userLimit) {
+                await channel.setUserLimit(chat.userLimit);
+              }
             }
           })
         );
