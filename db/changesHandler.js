@@ -4,7 +4,7 @@ module.exports = {
   changesUpdateLoop(client) {
     getAndRemoveAllChanges().then((changesList) => {
     console.log(changesList);
-      changesList.forEach((change) => {
+      changesList.forEach(async (change) => {
         await Promise.all(
           change._doc.chatToRemove.map(async (chat) => {
             if (client.channels.cache.get(chat) != null) {
