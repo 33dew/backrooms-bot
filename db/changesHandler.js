@@ -5,7 +5,7 @@ module.exports = {
     getAndRemoveAllChanges().then((changesList) => {
     console.log(changesList);
       changesList.forEach(async (change) => {
-        console.log(change);
+        console.log(change.chatToRemove);
         await Promise.all(
           change.chatToRemove.map(async (chat) => {
             if (client.channels.cache.get(chat) != null) {
