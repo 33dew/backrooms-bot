@@ -5,11 +5,10 @@ module.exports = {
     getAndRemoveAllChanges().then((changesList) => {
     console.log(changesList);
       changesList.forEach((change) => {
-        console.log(Object.keys(change))
         const json = JSON.stringify(change);
         const test = JSON.parse(json);
         console.log(test.chatToRemove);
-        console.log(change['chatToRemove']);
+        console.log(change.chatToRemove);
         // await Promise.all(
         //   change.chatToRemove.map(async (chat) => {
         //     if (client.channels.cache.get(chat) != null) {
