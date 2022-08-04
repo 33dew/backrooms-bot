@@ -1,4 +1,5 @@
 const { getAndRemoveAllChanges, updateRoom, getUsers } = require("./controllers/changesController");
+const { ChannelType } = require("discord.js");
 
 module.exports = {
   changesUpdateLoop(client) {
@@ -56,7 +57,7 @@ module.exports = {
                 users.slice(1).forEach(e => {
                   c.permissionOverwrites.edit(e, { ViewChannel: true })
                 });
-                
+
             }
             else {
               const channel = client.channels.cache.get(chat.channelid);
