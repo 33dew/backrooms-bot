@@ -17,13 +17,32 @@ module.exports = {
         }
         await Promise.all(
           change.Room.chats.map(async (chat) => {
-            const channel = client.channels.cache.get(chat.channelid);
-            if (channel != null) {
-              if (channel.name != chat.name) {
-                await channel.setName(chat.name);
-              }
-              if (channel.type == 2 && channel.userLimit != chat.voice_max) {
-                await channel.setUserLimit(chat.voice_max);
+            if (chat.channelid == "new") {
+                const c = await interaction.guild.channels.create({
+                  name: e.name,
+                  type: (chat.type == "voice" ? ChannelType.GuildVoice : ChannelType.GuildText),
+                  userLimit: e.size,
+                  parent: categoryChannel,
+                  permissionOverwrites: [
+                      {
+                          id: interaction.guild.id,
+                          deny: [PermissionFlagsBits.ViewChannel],
+                      },
+                      {
+                          id: interaction.user.id,
+                          allow: [PermissionFlagsBits.ViewChannel, PermissionFlagsBits.MoveMembers, PermissionFlagsBits.MuteMembers],
+                      },
+                  ]
+            }
+            else {
+              const channel = client.channels.cache.get(chat.channelid);
+              if (channel != null) {
+                if (channel.name != chat.name) {
+                  await channel.setName(chat.name);
+                }
+                if (channel.type == 2 && channel.userLimit != chat.voice_max) {
+                  await channel.setUserLimit(chat.voice_max);
+                }
               }
             }
           })

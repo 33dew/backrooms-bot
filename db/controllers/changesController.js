@@ -32,5 +32,18 @@ module.exports = {
                 resolve(false);
             });
         });
+    },
+    getUsers (category_id) {
+        return new Promise((resolve, reject) => {
+            Room.findOne({ category: category_id }, (err, room) => {
+                if (err) {
+                    reject(err);
+                }
+                if (room) {
+                    resolve([room.owner, ...room.users]);
+                }
+                resolve(null);
+            });
+        });
     }
 }
