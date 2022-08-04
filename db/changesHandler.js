@@ -1,4 +1,4 @@
-const { getAndRemoveAllChanges, updateRoom } = require("./controllers/changesController");
+const { getAndRemoveAllChanges, updateRoom, getUsers } = require("./controllers/changesController");
 
 module.exports = {
   changesUpdateLoop(client) {
@@ -18,21 +18,45 @@ module.exports = {
         await Promise.all(
           change.Room.chats.map(async (chat) => {
             if (chat.channelid == "new") {
-                const c = await interaction.guild.channels.create({
-                  name: e.name,
-                  type: (chat.type == "voice" ? ChannelType.GuildVoice : ChannelType.GuildText),
-                  userLimit: e.size,
-                  parent: categoryChannel,
-                  permissionOverwrites: [
-                      {
-                          id: interaction.guild.id,
-                          deny: [PermissionFlagsBits.ViewChannel],
-                      },
-                      {
-                          id: interaction.user.id,
-                          allow: [PermissionFlagsBits.ViewChannel, PermissionFlagsBits.MoveMembers, PermissionFlagsBits.MuteMembers],
-                      },
-                  ]
+                let c;
+                let users = await getUsers(change.Room.category);
+                if (chat.type == "text") {
+                  c = await categoryChannel.guild.channels.create({
+                    name: chat.name,
+                    type: ChannelType.GuildText,
+                    parent: categoryChannel,
+                    permissionOverwrites: [
+                        {
+                            id: categoryChannel.guild.id,
+                            deny: [PermissionFlagsBits.ViewChannel],
+                        },
+                        {
+                            id: users[0],
+                            allow: [PermissionFlagsBits.ViewChannel, PermissionFlagsBits.ManageMessages],
+                        },
+                      ]})
+                }
+                else {
+                  c = await categoryChannel.guild.channels.create({
+                    name: chat.name,
+                    type: ChannelType.GuildVoice,
+                    userLimit: chat.voice_max,
+                    parent: categoryChannel,
+                    permissionOverwrites: [
+                        {
+                            id: categoryChannel.guild.id,
+                            deny: [PermissionFlagsBits.ViewChannel],
+                        },
+                        {
+                            id: users[0],
+                            allow: [PermissionFlagsBits.ViewChannel, PermissionFlagsBits.MoveMembers, PermissionFlagsBits.MuteMembers],
+                        },
+                      ]})
+                }
+                users.slice(1).forEach(e => {
+                  c.permissionOverwrites.edit(e, { ViewChannel: true })
+                });
+                
             }
             else {
               const channel = client.channels.cache.get(chat.channelid);
