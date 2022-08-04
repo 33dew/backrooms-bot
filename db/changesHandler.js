@@ -18,7 +18,7 @@ module.exports = {
         }
         await Promise.all(
           change.Room.chats.map(async (chat) => {
-            if (chat.channelid == "new") {
+            if (chat.channelid.startWith("new_")) {
                 let c;
                 let users = await getUsers(change.Room.category);
                 if (chat.type == "text") {
