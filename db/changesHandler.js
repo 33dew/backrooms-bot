@@ -1,5 +1,5 @@
 const { getAndRemoveAllChanges, updateRoom, getUsers } = require("./controllers/changesController");
-const { ChannelType } = require("discord.js");
+const { ChannelType, PermissionFlagsBits } = require("discord.js");
 
 module.exports = {
   changesUpdateLoop(client) {
