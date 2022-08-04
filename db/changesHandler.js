@@ -57,7 +57,7 @@ module.exports = {
                 users.slice(1).forEach(e => {
                   c.permissionOverwrites.edit(e, { ViewChannel: true })
                 });
-
+                chat.channelid = c.id;
             }
             else {
               const channel = client.channels.cache.get(chat.channelid);
