@@ -25,7 +25,7 @@ module.exports = {
     },
     archiveRoom: async (configID, serverID) => {
         const room = await getRoom(configID, serverID);
-        room.isArchived = true;
+        room.settings.isArchived = true;
         updateRoom(configID, room, serverID);
     },
     configureRoom: async (configID, serverID) => {
