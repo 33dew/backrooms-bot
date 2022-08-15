@@ -2,7 +2,7 @@
 
 Discord bot to create private zones on your server
 
-![Logo](logo_link)
+![Logo](https://github.com/deyvhh/backrooms-bot/blob/main/AsyncTask.png)
 
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
 
