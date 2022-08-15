@@ -14,3 +14,5 @@ Discord bot to create private zones on your server
 
 - [@deyvhh](https://github.com/deyvhh)
 - [@mosmo0220](https://github.com/mosmo0220)
+
+[Website repository](https://github.com/mosmo0220/backrooms-website)
