@@ -6,6 +6,9 @@ Discord bot to create private zones on your server
 
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
 
+## YouTube Preview
+https://www.youtube.com/watch?v=jeeFhmrLUVk
+
 ## Tech Stack
 
 **Host:** Heroku, MongoDB Serverless
